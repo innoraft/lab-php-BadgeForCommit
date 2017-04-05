@@ -1,7 +1,5 @@
-<?php
+<form action ="authentication.php" >
+  <input type="submit">
+</form>
 
-session_start();
-  echo '<h3>Not logged in</h3>';
-  echo '<p><a href="home.php?action=login">Log In</a></p>';
-?>
 
