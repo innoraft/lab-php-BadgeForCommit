@@ -1,42 +1,59 @@
 <?php
 
-$configs = include('../config/config.php');
+
 
 class githubServices {
 
 	
-    function getAccessToken( $request_code,$client_id, $client_secret) {
-    $ch = curl_init(); 
-    $url="https://github.com/login/oauth/access_token?code=".$request_code."&client_id=".$client_id."&client_secret=".$client_secret; 
- 
-    curl_setopt($ch,CURLOPT_URL,$url);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+    function getAccessToken( $request_code) {
+	    $configs = include('../config/config.php');
+	    $ch = curl_init(); 
+	    $url="https://github.com/login/oauth/access_token?code=".$request_code."&client_id=".$configs->OAUTH2_CLIENT_ID."&client_secret=".$configs->OAUTH2_CLIENT_SECRET; 
+	 
+	    curl_setopt($ch,CURLOPT_URL,$url);
+	    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
+	    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
- 	$output=curl_exec($ch);
-		// header('Content-Type: application/json');
+	 	$output=curl_exec($ch);
+			
 		$a=json_decode($output);
- 	echo $a->access_token;
-   		// echo json_decode($output);
-    curl_close($ch);
-    
-    // $json= json_decode($output);
-    // // echo $json->access_token;
-    // echo $json;
- 
+	 	// echo $a->access_token;
+	   	$b=$a->access_token;
 
-    // return $output;
+	    curl_close($ch);
+	    return $b;
     }
 
-    function getUserInfo() {
+    function getUserInfo($token) {
+
+    	$ch=curl_init();
+    	
+
+    	$url="https://api.github.com/user?access_token=".$token;
+    	curl_setopt($ch,CURLOPT_URL,$url);
+    	curl_setopt($ch, CURLOPT_HTTPHEADER,array(
+            "Accept: application/vnd.github.v3+json",
+            "Content-Type: text/plain",
+            "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
+        ));
+    	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+    	$output=curl_exec($ch);
+		
+        // echo $output;
+	    curl_close($ch);
+        return $output;
+	    
+
 
     }
-
-    function getCommits() {
-
-    }
-
-
 }
+
+
+
+
+
+
+
+
 
 ?>
