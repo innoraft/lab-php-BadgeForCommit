@@ -2,11 +2,17 @@
 session_start();
 
  include("../includes/githubServices.php");
+ include("../includes/databaseservices.php");
 
 // $configs = include('/config/config.php');
-$commits= new githubservices();
+$commits= new githubServices();
 $usercommits=$commits->getusercommits($_SESSION['user']);
-echo $usercommits;
+
+$commithash=new DatabaseServices();
+$commithash->insertcommithash($usercommits);
+
+
+
 
 // if (!isset($_SESSION['user'])) {
 //         echo "Please Login again";

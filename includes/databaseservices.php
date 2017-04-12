@@ -33,5 +33,37 @@
 		        echo "<a href='http://badgethecommit.local/pages/home.php'>Click Here See Your Commits</a>";
 		    	}
 			}
+
+
+
+			function insertcommithash($usercommits){
+
+				$db=mysqli_connect("localhost","root","123","db_badge");
+				$commitsha= json_decode($usercommits,true);
+				foreach ($commitsha['items'] as $key => $value) {
+					$sha=$value['sha'];	
+					echo $value['sha'];?><br><?php
+					$query2="SELECT *FROM t_commits WHERE commit_git_hash='".$sha."'";
+					$res = $db->query($query2);
+					$num= $res->num_rows;
+					if($num>=1)
+					{
+						echo "commit already exists";
+					}
+					else{
+					
+		       			 $sql= "INSERT INTO t_commits(commit_git_hash) VALUES('$sha')";
+		       			 mysqli_query($db,$sql);
+		       			 echo "inserted";					
+					}
+				}
+
+			}
+
+
+
+
+
+
 		 }
  ?>

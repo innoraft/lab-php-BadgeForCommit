@@ -57,7 +57,6 @@ class githubServices {
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
         $output=curl_exec($ch);
-        // echo count($output);
         return $output;
             
     }
