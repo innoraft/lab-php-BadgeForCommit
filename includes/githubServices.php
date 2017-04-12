@@ -42,9 +42,24 @@ class githubServices {
         // echo $output;
 	    curl_close($ch);
         return $output;
-	    
+	    }
 
 
+    function getusercommits($user){
+    
+        $ch=curl_init();
+        $url="https://api.github.com/search/commits?q=author:".$user . "&type=Commits";
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept:application/vnd.github.cloak-preview",
+             "Content-Type: text/plain",
+            "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
+            ));
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+        $output=curl_exec($ch);
+        // echo count($output);
+        return $output;
+            
     }
 }
 
