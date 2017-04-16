@@ -48,7 +48,7 @@ class githubServices {
     function getusercommits($user){
     
         $ch=curl_init();
-        $url="https://api.github.com/search/commits?q=author:".$user . "&type=Commits";
+        $url="https://api.github.com/search/commits?q=author:".$user."&type=Commits"."?page=3&per_page=100";
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept:application/vnd.github.cloak-preview",
              "Content-Type: text/plain",
@@ -57,6 +57,7 @@ class githubServices {
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
         $output=curl_exec($ch);
+        // echo count($output);
         return $output;
             
     }

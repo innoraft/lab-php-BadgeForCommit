@@ -8,11 +8,24 @@ session_start();
 $commits= new githubServices();
 $usercommits=$commits->getusercommits($_SESSION['user']);
 $commitsha= json_decode($usercommits,true);
-foreach ($commitsha['items'] as $key => $value) {	
-			echo $value['sha'];
-			echo "<a href=".$value['html_url'].">.....link</a>";?><br><?php
+$commithash=new DatabaseServices();
+?>
 
+<form action ="submit.php" method="post">
+<?php 
+foreach ($commitsha['items'] as $key => $value) {	
+			
+			?>
+			
+			<input type="checkbox" name="chk1[]" value ="<?php echo $value['sha'] ?>"><?php echo $value['sha']; echo "<a href=".$value['html_url'].">.....link</a>"; ?><br>
+<?php		
 }
+?>
+
+			<input type="submit" name="Submit" value="Submit">
+			</form>
+			<?php
+
 
 // $commithash=new DatabaseServices();
 // $commithash->insertcommithash($usercommits);

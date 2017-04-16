@@ -36,7 +36,19 @@
 
 
 
-			function insertcommithash($usercommits){
+			function insertcommithash(){
+
+				$db=mysqli_connect("localhost","root","123","db_badge");
+				$checkbox1= $_POST['chk1'];
+				if(isset($_POST['Submit']))
+				{
+					for($i=0;$i<sizeof($checkbox1);$i++){
+						$query="INSERT INTO t_commits(commit_git_hash) VALUES('".$checkbox1[$i]."')";
+						mysqli_query($db,$query);
+					}
+					echo "inserted";
+					
+				}
 
 				// $db=mysqli_connect("localhost","root","123","db_badge");
 				// $commitsha= json_decode($usercommits,true);
