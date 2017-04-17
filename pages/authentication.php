@@ -8,7 +8,8 @@
   	if(get('code')) {
 
   		$userservices = new githubServices();
-  		$access_token=$userservices->getAccessToken(get('code'));	
+  		$access_token=$userservices->getAccessToken(get('code'));
+      echo $access_token;
     	$userinfo=$userservices->getUserInfo($access_token);
       
 

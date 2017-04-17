@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 
 class githubServices {
 
@@ -27,14 +27,16 @@ class githubServices {
     function getUserInfo($token) {
 
     	$ch=curl_init();
-    	
-
+    	session_start();
+        $_SESSION['token']=$token;
     	$url="https://api.github.com/user?access_token=".$token;
     	curl_setopt($ch,CURLOPT_URL,$url);
     	curl_setopt($ch, CURLOPT_HTTPHEADER,array(
             "Accept: application/vnd.github.v3+json",
             "Content-Type: text/plain",
             "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
+           
+
         ));
     	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
     	$output=curl_exec($ch);
@@ -44,25 +46,46 @@ class githubServices {
         return $output;
 	    }
 
-
-    function getusercommits($user){
-    
-        $ch=curl_init();
-        $url="https://api.github.com/search/commits?q=author:".$user."&type=Commits"."?page=3&per_page=100";
+    function getuserrepos($user){
+        // echo $user;
+         $ch=curl_init();
+         $url="https://api.github.com/user/repos?access_token=$user";
         curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept:application/vnd.github.cloak-preview",
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept:application/vnd.github.mercy-preview+json",
              "Content-Type: text/plain",
             "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
+            ));
+         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+         $output=curl_exec($ch);
+         return $output;
+    }
+
+
+    function getusercommits($user,$token){
+    
+        $ch=curl_init();
+        $url="$user/commits?access_token=$token";
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+             "Content-Type: text/plain",
+            "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36",
+            
             ));
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
         $output=curl_exec($ch);
-        // echo count($output);
+        // echo $output;
+       
+        $commit_sha= json_decode($output,true);
+        foreach($commit_sha as $kye=>$value){
+            echo $value['sha'];?><br><?php
+            // echo "<a href=".$value['sha'].">.....link</a>";?><br><?php
+        }
+        
         return $output;
             
     }
 }
-
 
 
 

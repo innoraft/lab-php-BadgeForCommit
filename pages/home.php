@@ -4,20 +4,36 @@ session_start();
  include("../includes/githubServices.php");
  include("../includes/databaseservices.php");
 
+
+ $repo= new githubServices();
+ $userrepos=$repo->getuserrepos($_SESSION['token']);
+
 // $configs = include('/config/config.php');
+
+$list=array();
+$i=0;
+$repos= json_decode($userrepos,true);
+foreach($repos as $key => $value){
+$list[$i]=$value['url'];
+
+$i++;
+}
+
 $commits= new githubServices();
-$usercommits=$commits->getusercommits($_SESSION['user']);
-$commitsha= json_decode($usercommits,true);
-$commithash=new DatabaseServices();
+for($i=0;$i<count($list);$i++){
+$usercommits=$commits->getusercommits($list[$i],$_SESSION['token']);
+}
+
+
 ?>
 
 <form action ="submit.php" method="post">
 <?php 
-foreach ($commitsha['items'] as $key => $value) {	
+foreach ($rep as $key => $value) {	
 			
 			?>
 			
-			<input type="checkbox" name="chk1[]" value ="<?php echo $value['sha'] ?>"><?php echo $value['sha']; echo "<a href=".$value['html_url'].">.....link</a>"; ?><br>
+			<input type="checkbox" name="chk1[]" value ="<?php echo $value['commits_url'] ?>"><?php echo $value['commits_url']; echo "<a href=".$value['html_url'].">.....link</a>"; ?><br>
 <?php		
 }
 ?>
