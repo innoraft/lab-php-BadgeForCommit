@@ -30,7 +30,7 @@
 		        $sql= "INSERT INTO t_users(user_id,user_email) VALUES('$login','$email')";
 		        mysqli_query($db,$sql);
 		        echo "connected";
-		        echo "<a href='http://badgethecommit.local/pages/home.php'>Click Here See Your Repos</a>";
+		        echo "<a href='http://badgethecommit.local/pages/home.php'>Click Here See Your Commits</a>";
 		        mysqli_close($db);
 		    	}
 			}

@@ -6,7 +6,11 @@ session_start();
 
 
  $repo= new githubServices();
+
  $userrepos=$repo->getuserrepos($_SESSION['token']);
+ // echo $userrepos;
+ 
+
 
 // $configs = include('/config/config.php');
 
@@ -20,27 +24,11 @@ $i++;
 }
 
 $commits= new githubServices();
-for($i=0;$i<count($list);$i++){
-$usercommits=$commits->getusercommits($list[$i],$_SESSION['token']);
-}
+// for($i=0;$i<count($list);$i++){
+$usercommits=$commits->getusercommits($list,$_SESSION['token']);
 
 
-?>
 
-<form action ="submit.php" method="post">
-<?php 
-foreach ($rep as $key => $value) {	
-			
-			?>
-			
-			<input type="checkbox" name="chk1[]" value ="<?php echo $value['commits_url'] ?>"><?php echo $value['commits_url']; echo "<a href=".$value['html_url'].">.....link</a>"; ?><br>
-<?php		
-}
-?>
-
-			<input type="submit" name="Submit" value="Submit">
-			</form>
-			<?php
 
 
 // $commithash=new DatabaseServices();
