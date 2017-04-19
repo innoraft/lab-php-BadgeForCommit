@@ -46,18 +46,18 @@ class githubServices {
         return $output;
 	    }
 
-    function getuserrepos($user){
+    function getuserrepos($index,$user){
         // echo $user;
-        
-         $ch=curl_init();
-         $url="https://api.github.com/user/repos?access_token=$user";
+        // echo $index;
+        $ch=curl_init();
+        $url="https://api.github.com/user/repos?access_token=$user&page=$index&per_page=1";
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept:application/vnd.github.mercy-preview+json",
-             "Content-Type: text/plain",
+            "Content-Type: text/plain",
             "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
             ));
          curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-         $output=curl_exec($ch);
+         $output= curl_exec($ch);
          return $output;
     }
 
@@ -85,12 +85,14 @@ class githubServices {
 
        
         $commit_sha= json_decode($output,true);
+        // echo $commit_sha;
         foreach ($commit_sha as $key => $value) {
             
             
             $sha[$i]= $value['sha'];
             $link[$i]=$value['html_url'];
             $author[$i]=$value['author']['login'];
+            
                      
       
         $i++; 
@@ -103,7 +105,7 @@ class githubServices {
             if($_SESSION['user']==$author[$k])
             {
         ?>            
-        <input type="checkbox" name="chk1[]" value ="<?php echo  $sha[$k] ?>"><?php echo  $sha[$k];  echo "<a href=".$link[$k].">.....link</a>"; ?><br>
+        <input type="checkbox" name="chk1[]" value ="<?php echo  $sha[$k] ?>"><?php echo $sha[$k];echo $link[$k]; echo "<a href=".$link[$k].">.....link</a>"; ?><br>
         <?php  
         }     
         }
