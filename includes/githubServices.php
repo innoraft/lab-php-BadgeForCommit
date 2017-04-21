@@ -5,7 +5,7 @@ session_start();
 class githubServices {
 
 	
-    function getAccessToken( $request_code) {
+    function getAccessToken($request_code) {
 	    $configs = include('../config/config.php');
 	    $ch = curl_init(); 
 	    $url="https://github.com/login/oauth/access_token?code=".$request_code."&client_id=".$configs->OAUTH2_CLIENT_ID."&client_secret=".$configs->OAUTH2_CLIENT_SECRET; 
@@ -14,12 +14,9 @@ class githubServices {
 	    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
 	    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
-	 	$output=curl_exec($ch);
-			
+	 	$output=curl_exec($ch);			
 		$a=json_decode($output);
-	 	// echo $a->access_token;
 	   	$b=$a->access_token;
-
 	    curl_close($ch);
 	    return $b;
     }
@@ -47,8 +44,6 @@ class githubServices {
 	    }
 
     function getuserrepos($index,$user){
-        // echo $user;
-        // echo $index;
         $ch=curl_init();
         $url="https://api.github.com/user/repos?access_token=$user&page=$index&per_page=1";
         curl_setopt($ch,CURLOPT_URL,$url);
@@ -67,6 +62,8 @@ class githubServices {
         $sha=array();
         $link=array();
         $author=array();
+        $messg=array();
+        $com=array();
         $i=0;
     for($j=0;$j<sizeof($user);$j++){
         
@@ -85,30 +82,35 @@ class githubServices {
 
        
         $commit_sha= json_decode($output,true);
-        // echo $commit_sha;
         foreach ($commit_sha as $key => $value) {
             
-            
+            if($_SESSION['user']==$value['author']['login']){
             $sha[$i]= $value['sha'];
             $link[$i]=$value['html_url'];
             $author[$i]=$value['author']['login'];
-            
-                     
-      
+            $messg[$i]=$value['commit']['message'];
         $i++; 
         }
+        }
      }
+     for($j=0;$j<sizeof($sha);$j++){
+                $var = $sha[$j].','.$author[$j].','.$messg[$j];
+                $com[$j] = $var;
+     }
+     // print_r($com);
+     // echo json_encode($com,true);
      ?>
     <form action ="submit.php" method="post">
         <?php 
-        for($k=0;$k<sizeof($sha);$k++) {
-            if($_SESSION['user']==$author[$k])
-            {
-        ?>            
-        <input type="checkbox" name="chk1[]" value ="<?php echo  $sha[$k] ?>"><?php echo $sha[$k];echo $link[$k]; echo "<a href=".$link[$k].">.....link</a>"; ?><br>
+            for($k=0;$k<sizeof($com);$k++) {
+            // if($_SESSION['user']==$author[$k])
+            // {
+        ?>   
+            
+            <input type="checkbox" name="chk1[]," value ="<?php  print_r($com[$k]) ?>"><?php print_r($com[$k]);echo $link[$k]; echo "<a href=".$link[$k].">.....link</a>";?><br><br>
         <?php  
-        }     
-        }
+            // }     
+            }
         ?>
 
         <input type="submit" name="Submit" value="Submit">
@@ -117,6 +119,9 @@ class githubServices {
     
 }
 }
+
+
+
 ?>
 
 
