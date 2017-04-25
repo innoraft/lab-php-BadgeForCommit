@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+if(isset($_SESSION['uid']))
+{
+
 $array=array();
 $j=array();
 $db=mysqli_connect("localhost","root","123","db_badge");
@@ -14,13 +18,13 @@ $res=$db->query($query1);
  	?>
         <tr>
            <td>ID:<name="id" value= <?php echo $array['commit_id'];?>><?php echo $array['commit_id'];?> </td>
-           <!-- <td>SHA: <?php echo $array['commit_git_hash'];?></td>  -->
+           
            <td>COMMIT MESSAGE: <name="mess" value=<?php echo $array['commit_messg'];?>><?php echo $array['commit_messg'];?></td>
            <td>COMMIT_AUTHOR: <name="author"<?php echo $array['commit_author'];?>><?php echo $array['commit_author'];?></td>
            <td>BADGES:<?php 
                             $query2="SELECT *FROM t_badge";
                             $res1=$db->query($query2);
-                            // $i=0;
+                            
                             while($arr=mysqli_fetch_array($res1))
                             {
                             ?>
@@ -56,6 +60,12 @@ function review($a,$b)
 
 
 <?php
-    mysqli_close($db);
+    mysqli_close($db);?>
+    <a href='http://badgethecommit.local/pages/logout.php'>LOGOUT</a>
+    <?php
 
+} 
+else{
+  header('Location:http://badgethecommit.local/pages/login.php');
+}  
 ?>

@@ -1,6 +1,8 @@
 <?php
+session_start();
+
    include("../includes/databaseservices.php");
-	
+	if(isset($_SESSION['uid'])){
 				$db=mysqli_connect("localhost","root","123","db_badge");
 				
 				$checkbox1= $_POST['chk1'];
@@ -31,11 +33,15 @@
 					echo "not inserted";
 								}
 
-  mysqli_close($db);
+	  mysqli_close($db);
 
-				 // header('Location:main.php');
-  $badges=new DatabaseServices ();
-  $badges->newbadge();
-   // header('location:../includes/badges.php');
+					 // header('Location:main.php');
+	  $badges=new DatabaseServices ();
+	  $badges->newbadge();
+	   // header('location:../includes/badges.php');
+	}
+	else{
+		header('Location:login.php');
+	}
 
 ?>

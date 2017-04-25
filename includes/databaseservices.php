@@ -1,4 +1,4 @@
-
+ <link href="../assets/css/stylesheet.css" rel="stylesheet">
 <?php
 		session_start();
 		class DatabaseServices {
@@ -16,21 +16,20 @@
 				$res = $db->query($query1);
 				$num= $res->num_rows;
 					 $_SESSION['user'] = $login;
-			         $_SESSION['start'] = time(); 
-			         $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
+			 
 
 				if ($num >=1)
 
 				{
-				    
-			         echo "<a href='http://badgethecommit.local/pages/home.php'>Click Here See Your Commits</a>";
-			         // header('Location: http://badgethecommit.local/pages/home.php');
+					$query3="UPDATE t_users SET user_session_id='".$_SESSION['uid']."' WHERE user_id='".$_SESSION['user']."'";
+		            $res1=  $db->query($query3);
+			        header('Location: http://badgethecommit.local/pages/home.php');
 				}
 				else {  
-		        $sql= "INSERT INTO t_users(user_id,user_email) VALUES('$login','$email')";
+		        $sql= "INSERT INTO t_users(user_id,user_email,user_session_id) VALUES('$login','$email','".$_SESSION['uid']."')";
 		        mysqli_query($db,$sql);
 		        echo "connected";
-		        echo "<a href='http://badgethecommit.local/pages/home.php'>Click Here See Your Commits</a>";
+		        header('Location: http://badgethecommit.local/pages/home.php');
 		        mysqli_close($db);
 		    	}
 			}
@@ -40,41 +39,6 @@
 
 
 
-			// function insertcommithash(){
-
-			// 	$db=mysqli_connect("localhost","root","123","db_badge");
-			// 	$checkbox1= $_POST['chk1'];
-			// 	if(isset($_POST['Submit']))
-			// 	{
-			// 		for($i=0;$i<sizeof($checkbox1);$i++){
-			// 			$query="INSERT INTO t_commits(commit_git_hash) VALUES('".$checkbox1[$i]."')";
-			// 			mysqli_query($db,$query);
-			// 		}
-			// 		echo "inserted";
-					
-			// 	}
-
-			// 	$db=mysqli_connect("localhost","root","123","db_badge");
-			// 	$commitsha= json_decode($usercommits,true);
-			// 	foreach ($commitsha['items'] as $key => $value) {
-			// 		$sha=$value['sha'];	
-			// 		echo $value['sha'];
-			// 		$query2="SELECT *FROM t_commits WHERE commit_git_hash='".$sha."'";
-			// 		$res = $db->query($query2);
-			// 		$num= $res->num_rows;
-			// 		if($num>=1)
-			// 		{
-			// 			echo "commit already exists";
-			// 		}
-			// 		else{
-					
-		 //       			 $sql= "INSERT INTO t_commits(commit_git_hash) VALUES('$sha')";
-		 //       			 mysqli_query($db,$sql);
-		 //       			 echo "inserted";					
-			// 		}
-			// 	}
-
-			// }
 			function newbadge(){
 				$db=mysqli_connect("localhost","root","123","db_badge");
 				$badge_id=array("1","2","3");

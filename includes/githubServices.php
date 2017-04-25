@@ -6,6 +6,7 @@ class githubServices {
 
 	
     function getAccessToken($request_code) {
+        
 	    $configs = include('../config/config.php');
 	    $ch = curl_init(); 
 	    $url="https://github.com/login/oauth/access_token?code=".$request_code."&client_id=".$configs->OAUTH2_CLIENT_ID."&client_secret=".$configs->OAUTH2_CLIENT_SECRET; 
@@ -24,8 +25,8 @@ class githubServices {
     function getUserInfo($token) {
 
     	$ch=curl_init();
-    	session_start();
-        $_SESSION['token']=$token;
+    	// session_start();
+     //    $_SESSION['token']=$token;
     	$url="https://api.github.com/user?access_token=".$token;
     	curl_setopt($ch,CURLOPT_URL,$url);
     	curl_setopt($ch, CURLOPT_HTTPHEADER,array(
@@ -38,7 +39,7 @@ class githubServices {
     	curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
     	$output=curl_exec($ch);
 		
-        // echo $output;
+       
 	    curl_close($ch);
         return $output;
 	    }
@@ -64,6 +65,7 @@ class githubServices {
         $author=array();
         $messg=array();
         $com=array();
+        // $commit_sha=array();
         $i=0;
     for($j=0;$j<sizeof($user);$j++){
         
@@ -78,12 +80,9 @@ class githubServices {
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
         $output=curl_exec($ch);
-        // echo $output;
-
        
         $commit_sha= json_decode($output,true);
-        foreach ($commit_sha as $key => $value) {
-            
+        foreach ($commit_sha as $key=>$value) {            
             if($_SESSION['user']==$value['author']['login']){
             $sha[$i]= $value['sha'];
             $link[$i]=$value['html_url'];
@@ -97,19 +96,14 @@ class githubServices {
                 $var = $sha[$j].','.$author[$j].','.$messg[$j];
                 $com[$j] = $var;
      }
-     // print_r($com);
-     // echo json_encode($com,true);
      ?>
     <form action ="submit.php" method="post">
         <?php 
             for($k=0;$k<sizeof($com);$k++) {
-            // if($_SESSION['user']==$author[$k])
-            // {
         ?>   
             
-            <input type="checkbox" name="chk1[]," value ="<?php  print_r($com[$k]) ?>"><?php print_r($com[$k]);echo $link[$k]; echo "<a href=".$link[$k].">.....link</a>";?><br><br>
-        <?php  
-            // }     
+            <input type="checkbox" name="chk1[]," value ="<?php  print_r($com[$k]) ?>"><?php print_r($com[$k]);echo "<a href=".$link[$k].">.....link</a>";?><br><br>
+        <?php      
             }
         ?>
 
@@ -118,6 +112,8 @@ class githubServices {
         <?php    
     
 }
+
+
 }
 
 
