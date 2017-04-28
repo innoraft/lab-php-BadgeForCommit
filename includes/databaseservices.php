@@ -10,8 +10,9 @@
 		        $data = json_decode($output, true);        
 		        $login=$data["login"];
 		        $email=$data["email"];
+		        $id=2;
 
-		        $query1="SELECT * FROM t_users WHERE user_id='".$login."' AND user_email='".$email."'";
+		        $query1="SELECT * FROM t_users WHERE user_github_id='".$login."' AND user_email='".$email."'";
 
 				$res = $db->query($query1);
 				$num= $res->num_rows;
@@ -21,12 +22,12 @@
 				if ($num >=1)
 
 				{
-					$query3="UPDATE t_users SET user_session_id='".$_SESSION['uid']."' WHERE user_id='".$_SESSION['user']."'";
+					$query3="UPDATE t_users SET user_session_id='".$_SESSION['uid']."' WHERE user_github_id='".$_SESSION['user']."'";
 		            $res1=  $db->query($query3);
 			        header('Location: http://badgethecommit.local/pages/home.php');
 				}
 				else {  
-		        $sql= "INSERT INTO t_users(user_id,user_email,user_session_id) VALUES('$login','$email','".$_SESSION['uid']."')";
+		        $sql= "INSERT INTO t_users(user_email,user_session_id,user_github_id,user_role_id) VALUES('$email','".$_SESSION['uid']."','$login','$id')";
 		        mysqli_query($db,$sql);
 		        echo "connected";
 		        header('Location: http://badgethecommit.local/pages/home.php');

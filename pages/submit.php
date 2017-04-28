@@ -6,7 +6,7 @@ session_start();
 				$db=mysqli_connect("localhost","root","123","db_badge");
 				
 				$checkbox1= $_POST['chk1'];
-				
+				echo "hello";
 				if(isset($_POST['Submit']))
 				{
 					for($i=0;$i<sizeof($checkbox1);$i++)
@@ -14,7 +14,7 @@ session_start();
 						
 						$var = explode(",", $checkbox1[$i]);			
 							$a= $var[0];							
-							$b= $var[1];							
+							$b= $var[1];						
 							$c= $var[2];
 						$query1="SELECT * FROM t_commits WHERE commit_git_hash='".$a."'";
 				        $res = $db->query($query1);
@@ -23,7 +23,7 @@ session_start();
 				        	echo "$a already exists";
 				        }
 				        else{
-						$sql="INSERT INTO t_commits(commit_git_hash,commit_author,commit_messg) VALUES('$a','$b','$c')";
+						$sql="INSERT INTO t_commits(commit_git_hash,commit_messg,commit_author) VALUES('$a','$c','$b')";
 						mysqli_query($db,$sql);
 						}
 					}

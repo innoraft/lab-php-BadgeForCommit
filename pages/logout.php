@@ -3,7 +3,7 @@
     session_start();
  if(isset($_SESSION['uid'])){
      $db =mysqli_connect("localhost","root","123","db_badge");
-		 $query="UPDATE t_users SET user_session_id=NULL WHERE user_id='".$_SESSION['user']."'";
+		 $query="UPDATE t_users SET user_session_id=NULL WHERE user_github_id='".$_SESSION['user']."'";
 		 $res=  $db->query($query);
 		// $delauth=new githubServices();
 		// $delauth->deleteauth();

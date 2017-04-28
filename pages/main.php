@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo $_SESSION['token'];
 
 if(isset($_SESSION['uid']))
 {
@@ -44,7 +45,7 @@ function review($a,$b)
 {       
    $.ajax({
            type: "POST",
-           url: "../includes/badges.php",
+           url: "../includess/badges.php",
            data: {  
                 cid:$a,
                 bid:$b

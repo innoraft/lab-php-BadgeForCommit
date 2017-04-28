@@ -7,7 +7,7 @@ if(isset($_SESSION['uid']))
 {
 					 $array= array();
 					 $db =mysqli_connect("localhost","root","123","db_badge");
-					 $query="SELECT user_session_id FROM t_users WHERE user_id='".$_SESSION['user']."'";
+					 $query="SELECT user_session_id FROM t_users WHERE user_github_id='".$_SESSION['user']."'";
 					 $res=  $db->query($query);
 
 					 while( $array = mysqli_fetch_array($res) ){
@@ -18,35 +18,9 @@ if(isset($_SESSION['uid']))
 					 if($_SESSION['uid']=$stamp)
 					 {
 									 
+									$commits=new githubServices();
+									$commitslist=$commits->getcommits($_SESSION['token']);
 									
-									 $listrepo=array();
-									 $index=1;
-									 $flag=true;
-									 $repo= new githubServices();
-									 
-										 while($flag) {
-										 	$userrepos=$repo->getuserrepos($index,$_SESSION['token']);
-										 	$repolist= json_decode($userrepos,true);
-										 	$index=$index+1;
-										 	array_push($listrepo,$userrepos);
-										 	empty($repolist)?$flag=false:$flag=true;		
-										 }
-										 
-									$list=array();
-									$i=0;
-									$j=0;
-									while($j<sizeof($listrepo)){
-										$repos=json_decode($listrepo[$j],true);
-										foreach($repos as $key => $value){
-											$list[$i]=$value['url'];	
-											$i++;
-											}
-										$j++;
-										}
-
-
-									$commits= new githubServices();
-									$usercommits=$commits->getusercommits($list,$_SESSION['token']);
 
 					}
 
@@ -74,4 +48,5 @@ if(isset($_SESSION['uid']))
 else{
 	header('Location:http://badgethecommit.local/pages/login.php');
 }
+
 ?>
