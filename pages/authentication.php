@@ -15,7 +15,6 @@
   
             	if(get('code')) {
                 
-               
                   		$userservices = new githubServices();
                   		$access_token=$userservices->getAccessToken(get('code'));
                       $_SESSION['token']=$access_token;
@@ -23,8 +22,9 @@
                       $_SESSION['uid']=strtotime("now");
                     	$userinfo=$userservices->getUserInfo($access_token);
                       $db_service= new DatabaseServices();
+                      $db_service->newbadge();
                     	$display=$db_service->insertuserinfo($userinfo);
-                 
+                       
             	}
             	else{
             		      header('Location: '.$githubAuthUrl);

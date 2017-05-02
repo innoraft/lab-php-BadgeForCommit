@@ -49,6 +49,7 @@ class githubServices {
 	    }
 
 function getcommits($token){
+        $_SESSION['next']=1;
          $sha=array();
         $link=array();
         $author=array();
@@ -57,7 +58,7 @@ function getcommits($token){
         $commit_sha=array();
         $i=0;
         $ch=curl_init();
-        $url="https://api.github.com/search/commits?q=author:".$_SESSION['user']."&type=Commits&access_token=$token&page=1&per_page=1000";
+        $url="https://api.github.com/search/commits?q=author:".$_SESSION['user']."&type=Commits&access_token=$token&page=1&per_page=20";
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept:application/vnd.github.cloak-preview",
             "Content-Type: text/plain",
@@ -85,15 +86,12 @@ function getcommits($token){
             }   
         ?>   
 
-                <div class="col-md-12 align background">
-                    <div class=" inno"><img id="logo3" src="../assets/images/logo.png"></div>
-                    <div class=" co"><img src="../assets/images/inno.png"></div>                    
+                <div class="col-md-12 align">        
                 </div>
-
-
-                <div class="col-md-12 align">
-                <div class="list">
+<div class="container body1">
+<div class="col-md-6 col-md-offset-3">
                 <form action ="submit.php" method="post">
+                <h1 style="text-align: center;">ADD YOUR COMMITS FOR REVIEW</h1><br>
                 <?php 
                     for($k=0;$k<sizeof($com);$k++) {
                 ?>   
@@ -111,11 +109,21 @@ function getcommits($token){
                 <?php      
                     }
                 ?>
-
                 <input type="submit" name="Submit" value="Submit">
                 </form>
-                </div>
-                </div>
+        </div>
+
+    <div class="col-md-6 col-md-offset-3">            
+                <form action="../pages/nextpage.php" method="post">
+                    <input type="submit" name="nextpage" value="NEXTPAGE">
+                </form>
+   
+                 <form action="../pages/main.php" method="post">
+                    <input type="submit" name="mainpage" value="GO TO REVIEW">
+                </form>
+    </div>
+</div>
+       
                 <?php  
          
 

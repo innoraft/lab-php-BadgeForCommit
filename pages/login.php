@@ -8,7 +8,7 @@
 		<div class ="backdrop">
 			<div class="ha">
 					<form action ="authentication.php" >
-					 <img src="../assets/images/logo.png" id="logo" class="img-responsive" >
+					 <!-- <img src="../assets/images/logo.png" id="logo" class="img-responsive" > -->
 					 <h1 class="banner"> A BADGE FOR A COMMIT</h1>
 			 		 <input id="sub_button" type="submit" value="LOGIN WITH GITHUB">
 			 
@@ -21,7 +21,7 @@
 	<div class ="overlay">Upload your commits for review and provide badges to commits of other users.</div>
 
 
-    <div class=pos>
+  <!--   <div class=pos>
 	<div class=layer>
 			<div class= cover><img class="co1" src="../assets/images/inno.png">
 						<div class="container block">
@@ -47,7 +47,7 @@
 	</div>
 	</div>
 
-
+ -->
 	
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -61,7 +61,8 @@
 				}
 				  mysqli_close($db);
 				  echo "inserted";
-				  header('Location:../pages/main.php');
+				  return 0;
+				  // header('Location:../pages/main.php');
 			}
 
 

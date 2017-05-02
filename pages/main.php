@@ -1,6 +1,11 @@
+
+<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+<link href="../assets/css/stylesheet.css" rel="stylesheet">
+
+
 <?php
 session_start();
-echo $_SESSION['token'];
+// echo $_SESSION['token'];
 
 if(isset($_SESSION['uid']))
 {
@@ -11,6 +16,9 @@ $db=mysqli_connect("localhost","root","123","db_badge");
 $query1="SELECT * FROM t_commits WHERE commit_author!='".$_SESSION['user']."'";
 $res=$db->query($query1);
 ?>
+<div class="container body1">
+<div class="col-md-6 col-md-offset-3 ">
+<h1 style="text-align: center;">PICK A BADGE FOR A COMMIT</h1><br>
  <form id ="msgfrm" method="post">
  <?php
 
@@ -18,10 +26,10 @@ $res=$db->query($query1);
  {
  	?>
         <tr>
-           <td>ID:<name="id" value= <?php echo $array['commit_id'];?>><?php echo $array['commit_id'];?> </td>
+          <!--  <td>ID:<name="id" value= <?php echo $array['commit_id'];?>><?php echo $array['commit_id'];?> </td> -->
            
-           <td>COMMIT MESSAGE: <name="mess" value=<?php echo $array['commit_messg'];?>><?php echo $array['commit_messg'];?></td>
-           <td>COMMIT_AUTHOR: <name="author"<?php echo $array['commit_author'];?>><?php echo $array['commit_author'];?></td>
+           <td>COMMIT MESSAGE:<name="mess" value=<?php echo $array['commit_messg'];?>><?php echo $array['commit_messg'];?></td><br>
+           <td>COMMIT_AUTHOR: <mark><name="author"<?php echo $array['commit_author'];?>><?php echo $array['commit_author'];?></mark></td><br>
            <td>BADGES:<?php 
                             $query2="SELECT *FROM t_badge";
                             $res1=$db->query($query2);
@@ -39,13 +47,16 @@ $res=$db->query($query1);
 }
 ?>
 </form>
+
+
+
 <script>
 
 function review($a,$b)
 {       
    $.ajax({
            type: "POST",
-           url: "../includess/badges.php",
+           url: "../includes/badges.php",
            data: {  
                 cid:$a,
                 bid:$b
@@ -62,11 +73,15 @@ function review($a,$b)
 
 <?php
     mysqli_close($db);?>
-    <a href='http://badgethecommit.local/pages/logout.php'>LOGOUT</a>
+    <button><a href='http://badgethecommit.local/pages/logout.php'>LOGOUT</a></button>
+    </div>
+    </div>
     <?php
 
 } 
 else{
   header('Location:http://badgethecommit.local/pages/login.php');
-}  
+} 
+ 
 ?>
+

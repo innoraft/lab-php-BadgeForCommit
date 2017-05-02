@@ -36,9 +36,9 @@ session_start();
 	  mysqli_close($db);
 
 					 // header('Location:main.php');
-	  $badges=new DatabaseServices ();
-	  $badges->newbadge();
-	   // header('location:../includes/badges.php');
+	  // $badges=new DatabaseServices ();
+	  // $badges->newbadge();
+	   header('location:../pages/nextpage.php');
 	}
 	else{
 		header('Location:login.php');
