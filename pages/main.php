@@ -16,9 +16,13 @@ $db=mysqli_connect("localhost","root","123","db_badge");
 $query1="SELECT * FROM t_commits WHERE commit_author!='".$_SESSION['user']."'";
 $res=$db->query($query1);
 ?>
+<div class="align">        
 <div class="container body1">
-<div class="col-md-6 col-md-offset-3 ">
-<h1 style="text-align: center;">PICK A BADGE FOR A COMMIT</h1><br>
+
+<div class="col-sm-10 col-sm-offset-1">
+
+<div class="logout"><button><a href='http://badgethecommit.local/pages/logout.php'>LOGOUT</a></button></div>
+<h1 class="h11">PICK A BADGE FOR A COMMIT</h1><br>
  <form id ="msgfrm" method="post">
  <?php
 
@@ -29,7 +33,8 @@ $res=$db->query($query1);
           <!--  <td>ID:<name="id" value= <?php echo $array['commit_id'];?>><?php echo $array['commit_id'];?> </td> -->
            
            <td>COMMIT MESSAGE:<name="mess" value=<?php echo $array['commit_messg'];?>><?php echo $array['commit_messg'];?></td><br>
-           <td>COMMIT_AUTHOR: <mark><name="author"<?php echo $array['commit_author'];?>><?php echo $array['commit_author'];?></mark></td><br>
+           <td>COMMIT_AUTHOR: <mark><name="author" value=<?php echo $array['commit_author'];?>><?php echo $array['commit_author'];?></mark></td><br>
+           <td>COMMIT_LINK:<?php echo "<a href=".$array['commit_link'].">.....link</a>";?></td><br>
            <td>BADGES:<?php 
                             $query2="SELECT *FROM t_badge";
                             $res1=$db->query($query2);
@@ -73,7 +78,8 @@ function review($a,$b)
 
 <?php
     mysqli_close($db);?>
-    <button><a href='http://badgethecommit.local/pages/logout.php'>LOGOUT</a></button>
+    
+    </div>
     </div>
     </div>
     <?php

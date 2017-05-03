@@ -1,7 +1,6 @@
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 <link href="../assets/css/stylesheet.css" rel="stylesheet">
 
-
 <?php
 
 session_start();
@@ -49,7 +48,7 @@ class githubServices {
 	    }
 
 function getcommits($token){
-        $_SESSION['next']=1;
+        // $_SESSION['next']=1;
          $sha=array();
         $link=array();
         $author=array();
@@ -57,8 +56,9 @@ function getcommits($token){
         $com=array();
         $commit_sha=array();
         $i=0;
+        $a=array();
         $ch=curl_init();
-        $url="https://api.github.com/search/commits?q=author:".$_SESSION['user']."&type=Commits&access_token=$token&page=1&per_page=20";
+        $url="https://api.github.com/search/commits?q=author:".$_SESSION['user']."&type=Commits&access_token=$token&page=".$_SESSION['next']."&per_page=20";
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept:application/vnd.github.cloak-preview",
             "Content-Type: text/plain",
@@ -81,48 +81,97 @@ function getcommits($token){
                 
          }
          for($j=0;$j<sizeof($sha);$j++){
-                $var = $sha[$j].','.$author[$j].','.$messg[$j];
+                $var = $sha[$j].','.$author[$j].','.$messg[$j].','.$link[$j];
                 $com[$j] = $var;
             }   
         ?>   
 
-                <div class="col-md-12 align">        
-                </div>
+                <div class="align">        
 <div class="container body1">
-<div class="col-md-6 col-md-offset-3">
-                <form action ="submit.php" method="post">
-                <h1 style="text-align: center;">ADD YOUR COMMITS FOR REVIEW</h1><br>
+<div class="col-sm-10 col-sm-offset-1">
+                <form method="post">
+                <h1 class="h11">ADD YOUR COMMITS FOR REVIEW</h1><br>
                 <?php 
+                    // $a = "kjaskjSHKJHAKsj";
+                    // $myVar = (string)$a;
                     for($k=0;$k<sizeof($com);$k++) {
-                ?>   
-                    
-                    <input type="checkbox" name="chk1[]," value ="<?php  print_r($com[$k]) ?>"><?php
-                        
-                        
                         $var = explode(",", $com[$k]);            
-                            // $a= $var[0]; echo $var[0];                           
-                            // $b= $var[1]; echo $var[1];                      
-                            $c= $var[2]; echo $var[2];
+                            // $a = $com[$k];                          
+                            // $b= $var[1];                    
+                            // $c= $var[2];
+                ?>   
+                    <div class="col-sm-12 list" >
+
+                    <?php 
+                        // echo $messg[$k];
+                        // echo "<br>";
+                        echo "<input type='checkbox' onClick=".  
+                             "showAlert('".
+                             $sha[$k].
+                             "','".
+                             $author[$k].
+                             "','".
+                             $link[$k].
+                             "','".
+                             urlencode($messg[$k]).
+                             "')>";
+     
+     // $var = " ";
+
+     // echo "hekko". $var . "asdsad";               ?>
+                    
+
+                           <?php
+                        
+                        
+                           echo $var[2];
 
 
-                    echo "<a href=".$link[$k].">.....link</a>";?><br><br>
+                    echo "<a href=".$link[$k].">.....link</a>";?></div><br>
                 <?php      
                     }
                 ?>
-                <input type="submit" name="Submit" value="Submit">
+                
                 </form>
-        </div>
+       
 
-    <div class="col-md-6 col-md-offset-3">            
-                <form action="../pages/nextpage.php" method="post">
+              
+                <form  class="nex" action="../pages/nextpage.php" method="post">
                     <input type="submit" name="nextpage" value="NEXTPAGE">
                 </form>
    
-                 <form action="../pages/main.php" method="post">
+                 <form  class="main" action="../pages/main.php" method="post">
                     <input type="submit" name="mainpage" value="GO TO REVIEW">
                 </form>
-    </div>
+    
 </div>
+</div>
+ </div>
+ <script>
+  function showAlert(sha, author, link, message) { 
+    alert(sha + author + link + message);
+   var myText = "This is inserted!";
+   $.ajax({
+   type: "POST",
+   url:"../pages/submit.php",
+   data: {  
+                cid: sha,
+                did: author,
+                eid: link,
+                fid: message
+            },
+   dataType: "json",
+   success:function(data){
+   alert(data);
+  },
+});
+}
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+
+ 
        
                 <?php  
          
