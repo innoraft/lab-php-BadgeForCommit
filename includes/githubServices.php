@@ -49,7 +49,7 @@ class githubServices {
 
 function getcommits($token){
         // $_SESSION['next']=1;
-         $sha=array();
+        $sha=array();
         $link=array();
         $author=array();
         $messg=array();
@@ -83,7 +83,8 @@ function getcommits($token){
          for($j=0;$j<sizeof($sha);$j++){
                 $var = $sha[$j].','.$author[$j].','.$messg[$j].','.$link[$j];
                 $com[$j] = $var;
-            }   
+            } 
+            if(sizeof($com)!=0){  
         ?>   
 
                 <div class="align">        
@@ -139,6 +140,9 @@ function getcommits($token){
                 <form  class="nex" action="../pages/nextpage.php" method="post">
                     <input type="submit" name="nextpage" value="NEXTPAGE">
                 </form>
+                <form  class="nex1" action="../pages/previous.php" method="post">
+                    <input type="submit" name="prepage" value="PREV PAGE">
+                </form>
    
                  <form  class="main" action="../pages/main.php" method="post">
                     <input type="submit" name="mainpage" value="GO TO REVIEW">
@@ -173,7 +177,12 @@ function getcommits($token){
 
  
        
-                <?php  
+                <?php 
+                }
+        else{
+                header('location:../pages/main.php');
+            }
+ 
          
 
     }
