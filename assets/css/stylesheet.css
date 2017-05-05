@@ -118,7 +118,7 @@ src:url("../fonts/Raleway/Raleway-Light.ttf");
 
 }
 .list{
-	border-bottom:1px solid #dedede;
+	/*border-bottom:1px solid #dedede;*/
 	line-height: 70px;
 }
 /*.col-md-12 {

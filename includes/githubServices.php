@@ -66,7 +66,7 @@ function getcommits($token){
             ));
          curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
          $output= curl_exec($ch);
-         // echo $output;
+         echo $output;
          // return $output;
          $commit_sha=json_decode($output,true);
          // print_r($commit_sha);
