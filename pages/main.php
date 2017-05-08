@@ -34,6 +34,10 @@ $res=$db->query($query1);
            
            <td>COMMIT MESSAGE:<name="mess" value=<?php echo $array['commit_messg'];?>><?php echo $array['commit_messg'];?></td><br>
            <td>COMMIT_AUTHOR: <mark><name="author" value=<?php echo $array['commit_author'];?>><?php echo $array['commit_author'];?></mark></td><br>
+           <?php echo "<input type='button' onClick=".  
+                             "codedisplay('".
+                             $array['commit_code'].
+                             "') value='code'>";?>
            <td>COMMIT_LINK:<?php echo "<a href=".$array['commit_link'].">.....link</a>";?></td><br>
            <td>BADGES:<?php 
                             $query2="SELECT *FROM t_badge";
@@ -74,6 +78,15 @@ function review($a,$b)
 
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+function codedisplay(code){
+  
+  var a= atob(code);
+  console.log(a);
+  alert(a);
+} 
+</script>
 
 
 <?php

@@ -48,9 +48,10 @@ class githubServices {
 	    }
 
 function getcommits($token){
-        // $_SESSION['next']=1;
+        
         $sha=array();
         $link=array();
+        $code=array();
         $author=array();
         $messg=array();
         $com=array();
@@ -66,13 +67,14 @@ function getcommits($token){
             ));
          curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
          $output= curl_exec($ch);
-         echo $output;
+         // echo $output;
          // return $output;
          $commit_sha=json_decode($output,true);
          // print_r($commit_sha);
          foreach ($commit_sha['items'] as $key => $value) {
                 if($_SESSION['user']==$value['author']['login']){
                 $sha[$i]= $value['sha'];
+                $code[$i]=$value['url'];
                 $link[$i]=$value['html_url'];
                 $author[$i]=$value['author']['login'];
                 $messg[$i]=$value['commit']['message'];
@@ -81,7 +83,7 @@ function getcommits($token){
                 
          }
          for($j=0;$j<sizeof($sha);$j++){
-                $var = $sha[$j].','.$author[$j].','.$messg[$j].','.$link[$j];
+                $var = $sha[$j].','.$author[$j].','.$messg[$j].','.$link[$j].','.$code[$j];
                 $com[$j] = $var;
             } 
             if(sizeof($com)!=0){  
@@ -115,7 +117,8 @@ function getcommits($token){
                              $link[$k].
                              "','".
                              urlencode($messg[$k]).
-                             "')>";
+                             "','".
+                             $code[$k]."')>";
      
      // $var = " ";
 
@@ -152,7 +155,7 @@ function getcommits($token){
 </div>
  </div>
  <script>
-  function showAlert(sha, author, link, message) { 
+  function showAlert(sha, author, link, message,code) { 
     alert(sha + author + link + message);
    var myText = "This is inserted!";
    $.ajax({
@@ -162,7 +165,8 @@ function getcommits($token){
                 cid: sha,
                 did: author,
                 eid: link,
-                fid: message
+                fid: message,
+                gid: code
             },
    dataType: "json",
    success:function(data){
@@ -186,6 +190,49 @@ function getcommits($token){
          
 
     }
+
+
+
+function raw_url($link){
+        $ch=curl_init();
+        $url=$link."?access_token=".$_SESSION['token'];
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER,array(
+            "Accept: application/vnd.github.v3+json",
+            "Content-Type: text/plain",
+            "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
+           
+
+        ));
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        $output=curl_exec($ch);
+        
+       
+        curl_close($ch);
+        return $output;
+
+    }
+
+    // function code($link){
+    //     $ch=curl_init();
+    //     $url=$link.$_SESSION[];
+    //     curl_setopt($ch,CURLOPT_URL,$url);
+    //     curl_setopt($ch, CURLOPT_HTTPHEADER,array(
+    //         "Accept: application/vnd.github.v3+json",
+    //         "Content-Type: text/plain",
+    //         "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
+           
+
+    //     ));
+    //     curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+    //     $output=curl_exec($ch);
+        
+       
+    //     curl_close($ch);
+    //     return $output;
+
+    // }
+
 
 
 }

@@ -1,10 +1,24 @@
 <?php
-header('location:login.php');
+include("../includes/githubServices.php");
+// header('location:login.php');
 session_start();
 $a=$_POST['cid'];
 $b=$_POST['did'];
 $c=$_POST['eid'];
 $d=urldecode($_POST['fid']);
+$e=$_POST['gid'];
+$code_url=new githubServices();
+$url=$code_url->raw_url($e);
+$loc=json_decode($url,true);
+$array=array();
+foreach ($loc['files'] as $key => $value) {
+	$g=$value['patch'];
+	$array[]=$g;
+}
+$h=implode("=>",$array);
+$base_64=base64_encode($h);
+
+
 $db=mysqli_connect("localhost","root","123","db_badge");
 $query1="SELECT * FROM t_commits WHERE commit_git_hash='".$a."'";
 				        $res = $db->query($query1);
@@ -14,7 +28,7 @@ $query1="SELECT * FROM t_commits WHERE commit_git_hash='".$a."'";
 				        	$sql= "DELETE FROM t_commits WHERE commit_git_hash='".$a."'";
 				        }
 				        else{
-						$sql= "INSERT INTO t_commits(commit_git_hash,commit_author,commit_link,commit_messg) VALUES('$a','$b','$c','$d')";
+						$sql= "INSERT INTO t_commits(commit_git_hash,commit_author,commit_link,commit_messg,commit_code) VALUES('$a','$b','$c','$d','$base_64')";
 }
 mysqli_query($db,$sql);
 mysqli_close($db);
