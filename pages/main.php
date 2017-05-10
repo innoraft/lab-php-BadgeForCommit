@@ -23,7 +23,8 @@ $res=$db->query($query1);
 
 <div class="logout"><button><a href='http://badgethecommit.local/pages/logout.php'>LOGOUT</a></button></div>
 <h1 class="h11">PICK A BADGE FOR A COMMIT</h1><br>
- <form id ="msgfrm" method="post">
+<!--  <form id ="msgfrm" method="post"> -->
+<div id="msgfrm">
  <?php
 
   while( $array = mysqli_fetch_array($res) )
@@ -39,50 +40,41 @@ $res=$db->query($query1);
            <td>COMMIT_AUTHOR: <name="author" value=<?php echo $array['commit_author'];?>><?php echo $array['commit_author'];?></td><br>
 
           <?php $_SESSION['code']=base64_decode($array['commit_code']);?>
+
                       <a class="js-open-modal" data-id="<?php echo $array['commit_code']?>" href="#" data-modal-id="popup">View Code </a>
-
                       <div id="popup" class="modal-box"> 
-
                       <header>
-
-                        <a href="#" class="js-modal-close close">×</a>
-
-                        <h3>Your Code</h3>
-
+                      <a href="#" class="js-modal-close close">×</a>
+                      <h3>Your Code</h3>
+                      <p>your additions are preceded by a (+) sign while deletions are preceded by a (-) sign</p>
                       </header>
-
                       <div class="modal-body">
-
-                        <div id="bookId"> </div>
-
+                      <pre ><code id="bookId"> </code></pre>
                       </div>
-
                       <footer>
-
-                        <a href="#" class="js-modal-close">Close Button</a>
-
+                      <a href="#" class="js-modal-close">Close Button</a>
                       </footer>
-
-                    </div>
+                      </div>
           
-           <td>COMMIT_LINK:<?php echo "<a href=".$array['commit_link'].">.....link</a>";?></td><br>
-           <td>BADGES:<?php 
+          <!--  <td>COMMIT_LINK:<?php echo "<a href=".$array['commit_link'].">.....link</a>";?></td> --><br>
+          <td>BADGES:<?php 
                             $query2="SELECT *FROM t_badge";
                             $res1=$db->query($query2);
                             
                             while($arr=mysqli_fetch_array($res1))
                             {
                             ?>
-                            <td><button id="sub"><img src=<?php echo $arr['badge_icon']?> onClick="review(<?php echo $array['commit_id']?>,<?php echo $arr['badge_id']?>)"></button></td><?php 
+                            <td><button id="sub" onclick="this.disabled=true"><img src=<?php echo $arr['badge_icon']?> onClick="review(<?php echo $array['commit_id']?>,<?php echo $arr['badge_id']?>)"></button></td><?php 
                             }
                             ?>
-           </td>
+            </td>
         </tr>
         <br><br>
      <?php
 }
 ?>
-</form>
+</div>
+<!-- </form> -->
 
 
 <script>
@@ -98,7 +90,12 @@ function review($a,$b)
             },
            dataType: "json",
            success: function(data){
+            // alert("success");
            },
+           error: function(){
+            alert('badge provided');
+           }
+           
         });
 }
 
@@ -106,43 +103,35 @@ function review($a,$b)
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
   $(function(){
-  var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
-    $('a[data-modal-id]').click(function(e) {
+      var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+      $('a[data-modal-id]').click(function(e) {
       var myBookId = $(this).data('id');
       var code=atob(myBookId);
       // alert(code);
-      $("#bookId").html( code );
-  e.preventDefault();
-$("body").append(appendthis);
-$(".modal-overlay").fadeTo(500, 0.7);
+      $("#bookId").text( code );
+      e.preventDefault();
+      $("body").append(appendthis);
+      $(".modal-overlay").fadeTo(500, 0.7);
 
       var modalBox = $(this).attr('data-modal-id');
       $('#'+modalBox).fadeIn($(this).data());
-    }); 
-  $(".js-modal-close, .modal-overlay").click(function() {
-    $(".modal-box, .modal-overlay").fadeOut(500, function() {
+      }); 
+      $(".js-modal-close, .modal-overlay").click(function() {
+      $(".modal-box, .modal-overlay").fadeOut(500, function() {
       $(".modal-overlay").remove();
-    });
-  });
-  $(window).resize(function() {
-    $(".modal-box").css({
+      });
+      });
+      $(window).resize(function() {
+      $(".modal-box").css({
       top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
-      left: ($(window).width() - $(".modal-box").outerWidth()) /16
+      left: ($(window).width() - $(".modal-box").outerWidth()) /14
+      });
+      });
+      $(window).resize();
     });
-  });
-  $(window).resize();
-  });
 </script>
 
-<script>
 
-function codedisplay(code){
-  
-  var a= atob(code);
-  console.log(a);
-  alert(a);
-} 
-</script>
 
 
 <?php

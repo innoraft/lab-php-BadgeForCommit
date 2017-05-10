@@ -2,7 +2,7 @@
 include("../includes/githubServices.php");
 include("../includes/databaseservices.php");
 session_start();
-echo $_SESSION['token'];
+// echo $_SESSION['token'];
 $_SESSION['next']=1;
 if(isset($_SESSION['uid']))
 {
