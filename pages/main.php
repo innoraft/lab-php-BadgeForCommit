@@ -123,7 +123,7 @@ function review($a,$b)
       });
       $(window).resize(function() {
       $(".modal-box").css({
-      top: ($(window).height() - $(".modal-box").outerHeight()) / 2,
+      top: ($(window).height() - $(".modal-box").outerHeight()) / 50,
       left: ($(window).width() - $(".modal-box").outerWidth()) /14
       });
       });

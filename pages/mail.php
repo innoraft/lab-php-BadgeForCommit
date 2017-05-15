@@ -1,6 +1,10 @@
-
-
 <?php
+
+
+// echo "hello";
+// echo "welcome";
+
+
 $link = new mysqli( 'localhost', 'root', '123', 'db_badge' );
 if ( $link->connect_errno ) {
  die( "Failed to connect to MySQL: (" . $link->connect_errno . ") " . $link->connect_error );
@@ -17,6 +21,11 @@ if ( !$result ) {
  $message  = 'Whole query: ' . $query;
  die( $message );
 }
+
+
+// $q="INSERT INTO t_badge(badge_id) VALUES(3)";
+// $link->query($q);
+
 
 
 $c=array();
@@ -52,6 +61,7 @@ $i++;
 // 	$b= $row1;
 // }
 print_r($c);
+mysqli_close($link);
 
 
 

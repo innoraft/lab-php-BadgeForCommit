@@ -156,7 +156,7 @@ function getcommits($token){
  </div>
  <script>
   function showAlert(sha, author, link, message,code) { 
-    alert(sha + author + link + message);
+    // alert(sha + author + link + message);
    var myText = "This is inserted!";
    $.ajax({
    type: "POST",
