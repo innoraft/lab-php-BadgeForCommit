@@ -55,8 +55,8 @@ $mail = new PHPMailer();
 // $mail->Password = "secret"; // SMTP password
 $query2="SELECT user_email from t_users";
 $res2=$db->query($query2);
-while ($row2 = $result->fetch_assoc()) {
- 
+while ($row2 = $res2->fetch_assoc()) {
+ echo $row2['user_email'];
 $mail->From = "harpreet.kaur@gmail.com";
 $mail->FromName = "harpreet";
 $mail->AddAddress($row2['user_email']);
@@ -65,7 +65,7 @@ $mail->AddAddress($row2['user_email']);                  // name is optional
 $mail->IsHTML(true);   
 
 $mail->Subject = "SUMMARY OF MOST RATED COMMITS";
-$mail->Body    = $c;
+$mail->Body    = "$c";
 $mail->AltBody = "This is the body in plain text for non-HTML mail clients";
 
 if(!$mail->Send())
