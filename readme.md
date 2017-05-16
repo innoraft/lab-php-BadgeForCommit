@@ -51,6 +51,11 @@ GETTING STARTED AND USING THE APPLICATION:
 
 		STEP6: Logout after you are done.
 
+CRON SETUP REQUIREMENTS:
+ 
+		STEP1: execute command crontab -e from the terminal and add the following at the end of the file.
+			*/2 * * * * php /path of the /pages/mail.php file > path of the text file for loggimg in the data obtained after     				analysis(html/badgethecommit/pages/output.txt)
+
 
 
 

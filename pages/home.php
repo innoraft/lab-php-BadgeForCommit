@@ -10,7 +10,7 @@ if(isset($_SESSION['uid']))
 					 $array= array();
 					
 		             $db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database");
-					 $query="SELECT user_session_id FROM t_users WHERE user_github_id='".$_SESSION['user']."'";
+					 $query="SELECT * FROM t_users WHERE user_github_id='".$_SESSION['user']."'";
 					 $res=  $db->query($query);
 
 					 while( $array = mysqli_fetch_array($res) ){

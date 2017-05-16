@@ -1,30 +1,14 @@
 <?php
+require("/var/www/html/badgethecommit/includes/class.phpmailer.php");
+$configs = include('/var/www/html/badgethecommit/config/config.php');
+
+// replace the db_credentials from the line below with  your db credentials
+$db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database"); 
 
 
-// echo "hello";
-// echo "welcome";
-
-$configs = include('../config/config.php');
-$link = new mysqli( "$configs->host","$configs->username","$configs->pass","$configs->database");
-if ( $link->connect_errno ) {
- die( "Failed to connect to MySQL: (" . $link->connect_errno . ") " . $link->connect_error );
-}
-
-// Fetch the data
 $query = "SELECT commit_id, COUNT(*) as c from t_commit_review group by commit_id order by c DESC
 LIMIT 5";
-$result = $link->query( $query );
-
-
-if ( !$result ) {
- $message  = 'Invalid query: ' . $link->error . "n";
- $message  = 'Whole query: ' . $query;
- die( $message );
-}
-
-
-
-
+$result = $db->query( $query );
 $c=array();
 $i=0;
 $b=array();
@@ -37,7 +21,7 @@ while ($row = $result->fetch_assoc()) {
 foreach ($data as $key => $value) {
 	// print_r($value);echo "<br>";
 	$query1= "SELECT commit_author,commit_messg FROM t_commits WHERE commit_id= '".$value['commit_id']."'";
-	$res = $link->query( $query1);
+	$res = $db->query( $query1);
 	while($row1 =$res->fetch_assoc()){
 		// echo $value['c'];
 		$row1['badge_sum']=$value['c'];
@@ -58,7 +42,44 @@ $i++;
 // 	$b= $row1;
 // }
 print_r($c);
-mysqli_close($link);
+
+
+
+//sending emails
+$mail = new PHPMailer();
+
+// $mail->IsSMTP();                                      // set mailer to use SMTP
+// $mail->Host = "mail.example.com;mail2.example.com";  // specify main and backup server
+// $mail->SMTPAuth = true;     // turn on SMTP authentication
+// $mail->Username = "jswan";  // SMTP username
+// $mail->Password = "secret"; // SMTP password
+$query2="SELECT user_email from t_users";
+$res2=$db->query($query2);
+while ($row2 = $result->fetch_assoc()) {
+ 
+$mail->From = "harpreet.kaur@gmail.com";
+$mail->FromName = "harpreet";
+$mail->AddAddress($row2['user_email']);
+$mail->AddAddress($row2['user_email']);                  // name is optional
+// $mail->AddReplyTo("info@example.com", "Information");
+$mail->IsHTML(true);   
+
+$mail->Subject = "SUMMARY OF MOST RATED COMMITS";
+$mail->Body    = $c;
+$mail->AltBody = "This is the body in plain text for non-HTML mail clients";
+
+if(!$mail->Send())
+{
+   echo "Message could not be sent. <p>";
+   echo "Mailer Error: " . $mail->ErrorInfo;
+   exit;
+}
+
+echo "Message has been sent";
+}
+
+
+mysqli_close($db);
 
 
 
