@@ -5,8 +5,8 @@
 
 		     function insertuserinfo($output) {
 		     	
-				
-		        $db =mysqli_connect("localhost","root","123","db_badge");        
+				$configs = include('../config/config.php');
+		        $db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database");        
 		        $data = json_decode($output, true);        
 		        $login=$data["login"];
 		        $email=$data["email"];
@@ -41,7 +41,8 @@
 
 
 			function newbadge(){
-				$db=mysqli_connect("localhost","root","123","db_badge");
+				$configs = include('../config/config.php');
+		        $db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database"); 
 				$badge_id=array("1","2","3");
 				$badge_name=array("golden_badge","silver_badge","copper_badge");
 				$badge_icon=array("../assets/images/gold.png","../assets/images/silver.png","../assets/images/copper.png");
@@ -63,6 +64,12 @@
 				  echo "inserted";
 				  return 0;
 				  // header('Location:../pages/main.php');
+			}
+
+
+			function badge_analysis(){
+				$db=mysqli_connect("localhost","root","123","db_badge");
+
 			}
 
 

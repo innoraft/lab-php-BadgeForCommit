@@ -4,8 +4,8 @@
 // echo "hello";
 // echo "welcome";
 
-
-$link = new mysqli( 'localhost', 'root', '123', 'db_badge' );
+$configs = include('../config/config.php');
+$link = new mysqli( "$configs->host","$configs->username","$configs->pass","$configs->database");
 if ( $link->connect_errno ) {
  die( "Failed to connect to MySQL: (" . $link->connect_errno . ") " . $link->connect_error );
 }
@@ -22,9 +22,6 @@ if ( !$result ) {
  die( $message );
 }
 
-
-// $q="INSERT INTO t_badge(badge_id) VALUES(3)";
-// $link->query($q);
 
 
 

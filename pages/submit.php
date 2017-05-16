@@ -19,7 +19,8 @@ $h=implode("=>",$array);
 $base_64=base64_encode($h);
 
 
-$db=mysqli_connect("localhost","root","123","db_badge");
+$configs = include('../config/config.php');
+$db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database"); 
 $query1="SELECT * FROM t_commits WHERE commit_git_hash='".$a."'";
 				        $res = $db->query($query1);
 				        $num= $res->num_rows;

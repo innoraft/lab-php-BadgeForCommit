@@ -1,8 +1,1 @@
-Array
-(
-    [0] => {"commit_author":"Srijeeta","commit_messg":"added .gitgnore","badge_sum":"3"}
-    [1] => {"commit_author":"harpreet16","commit_messg":"upper three sections changed","badge_sum":"3"}
-    [2] => {"commit_author":"harpreet16","commit_messg":"second commit","badge_sum":"2"}
-    [3] => {"commit_author":"Srijeeta","commit_messg":"first commit","badge_sum":"2"}
-    [4] => {"commit_author":"harpreet16","commit_messg":"this is the fikrst game upload","badge_sum":"2"}
-)
+Failed to connect to MySQL: (1045) Access denied for user 'harpreet'@'localhost' (using password: NO)

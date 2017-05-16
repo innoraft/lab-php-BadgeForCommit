@@ -6,13 +6,15 @@
 <?php
 session_start();
 // echo $_SESSION['token'];
+$configs = include('../config/config.php');
 
 if(isset($_SESSION['uid']))
 {
 
 $array=array();
 $j=array();
-$db=mysqli_connect("localhost","root","123","db_badge");
+
+$db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database"); 
 $query1="SELECT * FROM t_commits WHERE commit_author!='".$_SESSION['user']."'";
 $res=$db->query($query1);
 ?>
@@ -32,7 +34,7 @@ $res=$db->query($query1);
   
  	?>
         
-
+    
         <tr>
           <!--  <td>ID:<name="id" value= <?php echo $array['commit_id'];?>><?php echo $array['commit_id'];?> </td> -->
            
@@ -55,6 +57,8 @@ $res=$db->query($query1);
                       <a href="#" class="js-modal-close">Close Button</a>
                       </footer>
                       </div>
+
+          <!--  -->
           
           <!--  <td>COMMIT_LINK:<?php echo "<a href=".$array['commit_link'].">.....link</a>";?></td> --><br>
           <td>BADGES:<?php 
