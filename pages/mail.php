@@ -28,19 +28,12 @@ foreach ($data as $key => $value) {
 		// $row1++=$value['c'];
 		// print_r($row1);echo"<br>";
 	$b= json_encode($row1,true);
- // print_r($b);
-	// $b=array_push($b,$value['c']);
-	// print_r($b); echo "<br>";
-
-	
 }
 $c[$i]=$b;
 $i++;
 	// echo $res;
 }
-// while($row1 =$res->fetch_assoc()){
-// 	$b= $row1;
-// }
+
 print_r($c);
 
 
@@ -56,7 +49,9 @@ $mail = new PHPMailer();
 $query2="SELECT user_email from t_users";
 $res2=$db->query($query2);
 while ($row2 = $res2->fetch_assoc()) {
- echo $row2['user_email'];
+	// echo"<br>";
+ // echo $row2['user_email'];
+
 $mail->From = "harpreet.kaur@gmail.com";
 $mail->FromName = "harpreet";
 $mail->AddAddress($row2['user_email']);
@@ -72,7 +67,7 @@ if(!$mail->Send())
 {
    echo "Message could not be sent. <p>";
    echo "Mailer Error: " . $mail->ErrorInfo;
-   exit;
+   // exit;
 }
 
 echo "Message has been sent";
