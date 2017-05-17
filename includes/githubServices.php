@@ -1,7 +1,9 @@
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 <link href="../assets/css/stylesheet.css" rel="stylesheet">
 
+
 <?php
+include("/databaseservices.php");
 
 session_start();
 
@@ -150,10 +152,21 @@ function getcommits($token){
                  <form  class="main" action="../pages/main.php" method="post">
                     <input type="submit" name="mainpage" value="GO TO REVIEW">
                 </form>
+
+
+            <div style="border:1px solid black;text-align: center;">
+            <h3> LATEST SUMMARY</h3>
+             <?php $dash=new DatabaseServices();
+            $dash->getdisplay();?></div>
     
 </div>
 </div>
  </div>
+
+
+<!--  <div class="container body1">
+    
+ </div> -->
  <script>
   function showAlert(sha, author, link, message,code) { 
     // alert(sha + author + link + message);
@@ -213,26 +226,7 @@ function raw_url($link){
 
     }
 
-    // function code($link){
-    //     $ch=curl_init();
-    //     $url=$link.$_SESSION[];
-    //     curl_setopt($ch,CURLOPT_URL,$url);
-    //     curl_setopt($ch, CURLOPT_HTTPHEADER,array(
-    //         "Accept: application/vnd.github.v3+json",
-    //         "Content-Type: text/plain",
-    //         "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
-           
-
-    //     ));
-    //     curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-    //     $output=curl_exec($ch);
-        
-       
-    //     curl_close($ch);
-    //     return $output;
-
-    // }
-
+    
 
 
 }

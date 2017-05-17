@@ -6,6 +6,7 @@
 <?php
 session_start();
 // echo $_SESSION['token'];
+include("../includes/databaseservices.php");
 $configs = include('../config/config.php');
 
 if(isset($_SESSION['uid']))
@@ -39,7 +40,7 @@ $res=$db->query($query1);
           <!--  <td>ID:<name="id" value= <?php echo $array['commit_id'];?>><?php echo $array['commit_id'];?> </td> -->
            
            <td>COMMIT MESSAGE:<name="mess" value=<?php echo $array['commit_messg'];?>><?php echo $array['commit_messg'];?></td><br>
-           <td>COMMIT_AUTHOR: <name="author" value=<?php echo $array['commit_author'];?>><?php echo $array['commit_author'];?></td><br>
+           <td>COMMIT_AUTHOR: <name="author" value=<?php echo $array['commit_author'];?>><?php echo $array['commit_author'];?></td>&nbsp;
 
           <?php $_SESSION['code']=base64_decode($array['commit_code']);?>
 
@@ -56,10 +57,14 @@ $res=$db->query($query1);
                       <footer>
                       <a href="#" class="js-modal-close">Close Button</a>
                       </footer>
-                      </div>
+                      </div><br>
 
           <!--  -->
-          
+          <?php
+            $dash=new DatabaseServices();
+            $return=$dash->b_dashboard($array['commit_id']);
+            print_r($return);
+          ?>
           <!--  <td>COMMIT_LINK:<?php echo "<a href=".$array['commit_link'].">.....link</a>";?></td> --><br>
           <td>BADGES:<?php 
                             $query2="SELECT *FROM t_badge";
