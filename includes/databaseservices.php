@@ -117,7 +117,7 @@
 					while($row1 =$res->fetch_assoc()){
 						// echo $value['c'];
 						$row1['badge_sum']=$value['c'];
-						echo $row1['commit_messg']." of ".$row1['commit_author']." has received ".$row1['badge_sum']." badges";echo "<br>";
+						$m= $row1['commit_messg']." of ".$row1['commit_author']." has received ".$row1['badge_sum']." badges";echo "<br>";
 						// // $row1++=$value['c'];
 						// print_r($row1);echo"<br>";
 					// $b= json_encode($row1,true);
