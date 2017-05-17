@@ -1,22 +1,22 @@
 <?php
-$configs = include('/config/config.php');
-$con = new mysqli("$configs->host","$configs->username","$configs->pass");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-//change the db_name accordingly
-$sql = "CREATE DATABASE db_badge";
-if ($con->query($sql) === TRUE) {
-    echo "Database created successfully";
-} else {
-    echo "Error creating database: " . $conn->error;
-}
+$configs = include('config/config.php');
+// $con = new mysqli("$configs->host","$configs->username","$configs->pass");
+// if ($con->connect_error) {
+//     die("Connection failed: " . $con->connect_error);
+// } 
+// //change the db_name accordingly
+// $sql = "CREATE DATABASE $configs->database";
+// if ($con->query($sql) === TRUE) {
+//     echo "Database created successfully";
+// } else {
+//     echo "Error creating database: " . $con->error;
+// }
 
 
 $conn=mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database"); 
 
 
-$q1="CREATE TABLE 't_badge' (
+$q1="CREATE TABLE `t_badge`(
   `badge_id` int(20) NOT NULL AUTO_INCREMENT,
   `badge_name` varchar(30) DEFAULT NULL,
   `badge_author` varchar(50) DEFAULT NULL,
@@ -82,6 +82,7 @@ if ($conn->query($q5) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 $conn->close();
+ header('Location: /pages/login.php');
 
 
 ?>

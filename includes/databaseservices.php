@@ -24,13 +24,13 @@
 				{
 					$query3="UPDATE t_users SET user_session_id='".$_SESSION['uid']."' WHERE user_github_id='".$_SESSION['user']."'";
 		            $res1=  $db->query($query3);
-			        header('Location: http://badgethecommit.local/pages/home.php');
+			        header('Location: ../pages/home.php');
 				}
 				else {  
 		        $sql= "INSERT INTO t_users(user_email,user_session_id,user_github_id,user_role_id) VALUES('$email','".$_SESSION['uid']."','$login','$id')";
 		        mysqli_query($db,$sql);
 		        echo "connected";
-		        header('Location: http://badgethecommit.local/pages/home.php');
+		        header('Location: ../pages/home.php');
 		        mysqli_close($db);
 		    	}
 			}
@@ -117,7 +117,7 @@
 					while($row1 =$res->fetch_assoc()){
 						// echo $value['c'];
 						$row1['badge_sum']=$value['c'];
-						$m= $row1['commit_messg']." of ".$row1['commit_author']." has received ".$row1['badge_sum']." badges";echo "<br>";
+						echo $row1['commit_messg']." of ".$row1['commit_author']." has received ".$row1['badge_sum']." badges";echo "<br>";
 						// // $row1++=$value['c'];
 						// print_r($row1);echo"<br>";
 					// $b= json_encode($row1,true);

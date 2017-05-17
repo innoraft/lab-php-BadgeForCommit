@@ -28,13 +28,13 @@ if(isset($_SESSION['uid']))
 									$commits=new githubServices();
 									$commitslist=$commits->getcommits($_SESSION['token']);
 
-									
+
 									
 
 					}
 
 					else{	
-						header('Location:http://badgethecommit.local/pages/logout.php');
+						header('Location:logout.php');
 					}
 
 
@@ -45,7 +45,7 @@ if(isset($_SESSION['uid']))
 
 }
 else{
-	header('Location:http://badgethecommit.local/pages/login.php');
+	header('Location:login.php');
 }
 
 ?>

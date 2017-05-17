@@ -11,29 +11,11 @@ INSTALLATION PROCEDURE:
 
 		STEP4: Upload the application on the server.
 
-		STEP5: Run the index.html file to start the application.
+		STEP5: Run the index.html file to start the application.The database will be created if it does not exist.
 
 
 
-DATABASE QUERIES AND DATABASE STRUCTURE:
-		
-Queries for creating tables of the database(db_badge)
 
-Creating table t_users:
-create table t_users(user_id int(50) auto_increment primary key,user_session_id varchar(30),user_github_id varchar(50),user_role_id varchar(10),user_email varchar(50));
-
-Creating table t_commits:
-create table t_commits(commit_id int(20) auto_increment primary key,commit_git_hash varchar(50), commit_messg varchar(50), commit_author varchar(50),commit_link varchar(80),commit_code blob); 
-
-Creating table t_commit_review:
-create table t_commit_review(commit_review_id int(20) auto_increment primary key,commit_id int(20),commit_reviewer_id varchar(50),badge_id varchar(20),commit_review_created varchar(20));
-
-Creating table t_user_role:
-create table t_user_role(user_role_id int(50) auto_increment primary key,user_role_name varchar(50),user_role_desc varchar(50));
-
-Insert data into table t_user_role:
-insert into t_user_role(user_role_name,user_role_desc) values('admin','holds all administrative rights');
-insert into t_user_role(user_role_name,user_role_desc) values('authenticated','only authenticated users can provide badges, donot have admin rights');
 
 
 

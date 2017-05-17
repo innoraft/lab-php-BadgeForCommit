@@ -11,7 +11,7 @@
 
     session_unset();
     session_destroy();
-    header('Location:http://badgethecommit.local/index.php');
+    header('Location:../index.php');
 }
 else{
 	header('Location:login.php');
