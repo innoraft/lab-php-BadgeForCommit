@@ -8,6 +8,7 @@ INSTALLATION PROCEDURE:
                 STEP2: Open the file → includes/config.php in any text or code editor.
 
 		STEP3: In the file you've just opened, set the Application credentials(OAUTH2_CLIENT_ID,OAUTH2_CLIENT_SECRET,redirect_uri)as obtained from the registered application from github and MySQL credentials(host,username,password and database).
+		NOTE:the redirect_uri field while registration of the app should exactly match the redirect_uri of config.php
 
 		STEP4: Upload the application on the server.
 
@@ -37,6 +38,9 @@ CRON SETUP REQUIREMENTS:
  
 		STEP1: execute command crontab -e from the terminal and add the following at the end of the file.
 			*/2 * * * * php /path of the /pages/mail.php file > path of the text file for logging in the data obtained after     				analysis(html/badgethecommit/pages/output.txt)
+
+
+cron should trigger /pages/mail.php.
 
 
 
