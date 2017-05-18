@@ -1,5 +1,6 @@
 <?php
 $configs = include('config/config.php');
+session_start();
 // $con = new mysqli("$configs->host","$configs->username","$configs->pass");
 // if ($con->connect_error) {
 //     die("Connection failed: " . $con->connect_error);
