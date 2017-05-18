@@ -110,7 +110,10 @@ function review($a,$b)
            dataType: "json",
            success: function(data){
             // alert("inserted");
-            console.log(data);
+            if(Object.keys(data.b).length===2)
+             $('#div'+data.a).html(" ");
+            // console.log(data);
+            else
              $('#div'+data.a).html(data.b);
            },
            error: function(data){
