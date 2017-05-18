@@ -90,9 +90,9 @@
 					}
 					return json_encode($data);
 				}
-				else{
-					echo "No badges received yet";
-				}
+				// else{
+				// 	echo "No badges received yet";
+				// }
 		    }
 
 

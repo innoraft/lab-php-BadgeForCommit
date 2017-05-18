@@ -65,7 +65,13 @@ $res=$db->query($query1);
             $dash=new DatabaseServices();
             $return=$dash->b_dashboard($array['commit_id']);
           ?>
-          <div id="div'.$array['commit_id'].'"><?php echo $return?></div><br>
+
+          <?php 
+          if(sizeof($return)==0)
+          echo "no badges provided yet";
+          else 
+          echo'<div id="div'.$array['commit_id'].'">'.$return.'</div><br>'
+          ?>
        
           <!--  <td>COMMIT_LINK:<?php echo "<a href=".$array['commit_link'].">.....link</a>";?></td> -->
           <td>BADGES:<?php 
@@ -105,7 +111,7 @@ function review($a,$b)
            success: function(data){
             alert("inserted");
             console.log(data);
-             $('#div'+data.a).replaceWith(data.b);
+             $('#div'+data.a).html(data.b);
            },
            error: function(data){
             console.log(data);
