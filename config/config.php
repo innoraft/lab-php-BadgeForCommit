@@ -1,7 +1,7 @@
 <?php 
 
 return (object) array( 'host' => 'localhost',
-	'server' =>'http://badge-form-commit.sites.innoraft.com/', 
+	'server' =>'http://badgethecommit.local/', 
 	'username' => 'root',
 	'pass' => '123',
 	'database' => 'db_badge' ,

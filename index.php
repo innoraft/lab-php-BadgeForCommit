@@ -11,7 +11,7 @@ if ($con->connect_error) {
 $sql = "CREATE DATABASE $configs->database";
 if ($con->query($sql) === TRUE) {
     echo "Database created successfully";
-    header('Location:'..$_SESSION['server'].'database_setup.php');
+    header('Location:'.$_SESSION['server'].'database_setup.php');
 } else {
      header('Location:'.$_SESSION['server'].'pages/login.php');
 }
