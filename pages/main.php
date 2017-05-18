@@ -13,7 +13,7 @@ if(isset($_SESSION['uid']))
 {
 
 $array=array();
-$j=0;
+
 
 $db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database"); 
 $query1="SELECT * FROM t_commits WHERE commit_author!='".$_SESSION['user']."'";
@@ -65,7 +65,7 @@ $res=$db->query($query1);
             $dash=new DatabaseServices();
             $return=$dash->b_dashboard($array['commit_id']);
           ?>
-          <?php echo '<div id="div'.$j.'">'.$return.'</div>'?><br>
+          <div id="div'.$array['commit_id'].'"><?php echo $return?></div><br>
        
           <!--  <td>COMMIT_LINK:<?php echo "<a href=".$array['commit_link'].">.....link</a>";?></td> -->
           <td>BADGES:<?php 
@@ -75,14 +75,14 @@ $res=$db->query($query1);
                             while($arr=mysqli_fetch_array($res1))
                             {
                             ?>
-                            <td><button id="sub"><img src=<?php echo $arr['badge_icon']?> onClick="review(<?php echo $array['commit_id']?>,<?php echo $arr['badge_id']?>,<?php echo $j?>)"></button></td><?php 
+                            <td><button id="sub"><img src=<?php echo $arr['badge_icon']?> onClick="review(<?php echo $array['commit_id']?>,<?php echo $arr['badge_id']?>)"></button></td><?php 
                             }
                             ?>
             </td>
         </tr>
         <br><br><br>
      <?php
-     $j++;
+    
 }
 ?>
 </div>
@@ -91,7 +91,7 @@ $res=$db->query($query1);
 
 <script>
 
-function review($a,$b,$c)
+function review($a,$b)
 {    
    
    $.ajax({
@@ -99,13 +99,12 @@ function review($a,$b,$c)
            url: "../includes/badges.php",
            data: {  
                 cid:$a,
-                bid:$b,
-                aid:$c
+                bid:$b
             },
            dataType: "json",
            success: function(data){
-            alert(inserted);
-            // console.log(data.b);
+            alert("inserted");
+            console.log(data);
              $('#div'+data.a).replaceWith(data.b);
            },
            error: function(data){

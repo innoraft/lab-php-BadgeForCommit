@@ -4,7 +4,7 @@ $a=$_POST['cid'];
 $b=$_POST['bid'];
 $c=$_SESSION['user'];
 $d=date('Y-m-d H:i:s');
-$id=$_POST['aid'];
+// $id=$_POST['aid'];
 // // echo $id;
 // // echo $a;
 
@@ -39,7 +39,7 @@ $query="SELECT badge_id, count( * ) AS c
 						$res=$db->query($q);
 						while($r=$res->fetch_assoc())
 						{
-							$data[$r['badge_name']]=$row['c'] ;
+							$data[$r['badge_name']]=$row['c'];
 						}
 										 // $data[] = $row;
 					}
@@ -48,7 +48,7 @@ $query="SELECT badge_id, count( * ) AS c
 // print_r($data);
  mysqli_close($db);
  $t= json_encode($data);
- echo json_encode(array("a" => $id, "b" => $t));
+ echo json_encode(array("a" => $a, "b" => $t));
  // return(1);
  
 
