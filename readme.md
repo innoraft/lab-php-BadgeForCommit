@@ -7,7 +7,7 @@ INSTALLATION PROCEDURE:
 
                 STEP2: Open the file → includes/config.php in any text or code editor.
 
-		STEP3: In the file you've just opened, set the Application credentials(OAUTH2_CLIENT_ID,OAUTH2_CLIENT_SECRET)as obtained from 			the registered application from github and MySQL credentials(host,username,password and database).
+		STEP3: In the file you've just opened, set the Application credentials(OAUTH2_CLIENT_ID,OAUTH2_CLIENT_SECRET,redirect_uri)as obtained from the registered application from github and MySQL credentials(host,username,password and database).
 
 		STEP4: Upload the application on the server.
 
