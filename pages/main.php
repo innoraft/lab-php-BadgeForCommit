@@ -70,7 +70,7 @@ $res=$db->query($query1);
           if(sizeof($return)==0)
           echo "no badges provided yet";
           else 
-          echo'<div id="div'.$array['commit_id'].'">'.$return.'</div><br>'
+          echo'<div id="div'.$array['commit_id'].'">'.$return.'</div>'
           ?>
        
           <!--  <td>COMMIT_LINK:<?php echo "<a href=".$array['commit_link'].">.....link</a>";?></td> -->
