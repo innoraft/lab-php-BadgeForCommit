@@ -1,7 +1,4 @@
 <?php
-
-   
-
  session_start();
 	$configs = include('../config/config.php');
 	include("../includes/githubServices.php");

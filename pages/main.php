@@ -109,7 +109,7 @@ function review($a,$b)
             },
            dataType: "json",
            success: function(data){
-            alert("inserted");
+            // alert("inserted");
             console.log(data);
              $('#div'+data.a).html(data.b);
            },

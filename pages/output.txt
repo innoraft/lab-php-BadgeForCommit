@@ -3,7 +3,7 @@ Array
     [0] => {"commit_author":"harpreet16","commit_messg":"second commit","badge_sum":"4"}
     [1] => {"commit_author":"Srijeeta","commit_messg":"reverted","badge_sum":"3"}
     [2] => {"commit_author":"Srijeeta","commit_messg":"first commit","badge_sum":"3"}
-    [3] => {"commit_author":"harpreet16","commit_messg":"upper three sections changed","badge_sum":"3"}
-    [4] => {"commit_author":"Srijeeta","commit_messg":"Exported Database","badge_sum":"2"}
+    [3] => {"commit_author":"harpreet16","commit_messg":"made a layout that resembles the template given","badge_sum":"3"}
+    [4] => {"commit_author":"harpreet16","commit_messg":"few corrections","badge_sum":"3"}
 )
 Invalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentInvalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentInvalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentMessage has been sentInvalid address: Invalid address: Message has been sent
