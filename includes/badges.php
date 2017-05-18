@@ -28,7 +28,7 @@ mysqli_query($db,$sql);
 $data=array();
 $query="SELECT badge_id, count( * ) AS c
 						FROM t_commit_review
-						WHERE commit_id ='".$a."' AND commit_reviewer_id='".$c."'
+						WHERE commit_id ='".$a."' 
 						GROUP BY badge_id";
 		        $result=$db->query($query);
                 if($result->num_rows!=0){ 

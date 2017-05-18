@@ -67,9 +67,9 @@ $res=$db->query($query1);
           ?>
 
           <?php 
-          if(sizeof($return)==0)
-          echo "no badges provided yet";
-          else 
+          // if(sizeof($return)==0)
+          // echo "no badges provided yet";
+          // else 
           echo'<div id="div'.$array['commit_id'].'">'.$return.'</div>'
           ?>
        
