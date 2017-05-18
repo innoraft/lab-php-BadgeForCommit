@@ -27,7 +27,18 @@ if(isset($_SESSION['uid']))
 									} 
 									$commits=new githubServices();
 									$commitslist=$commits->getcommits($_SESSION['token']);
+									?>
+									<div class="container body1">
+									<div class="col-sm-10 col-sm-offset-1">
+									<div style="border:1px solid black;text-align: center;">
+									 <h3> LATEST SUMMARY</h3>
+							             <?php $dash=new DatabaseServices();
+							            $dash->getdisplay();?>
+							        </div>
+							        </div>
+							        </div>
 
+							            <?php
 
 									
 

@@ -3,7 +3,7 @@
 
 
 <?php
-include("/databaseservices.php");
+// include("/databaseservices.php");
 
 session_start();
 
@@ -154,10 +154,8 @@ function getcommits($token){
                 </form>
 
 
-            <div style="border:1px solid black;text-align: center;">
-            <h3> LATEST SUMMARY</h3>
-             <?php $dash=new DatabaseServices();
-            $dash->getdisplay();?></div>
+            
+          
     
 </div>
 </div>
