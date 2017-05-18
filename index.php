@@ -10,7 +10,7 @@ if ($con->query($sql) === TRUE) {
     echo "Database created successfully";
     header('Location:database_setup.php');
 } else {
-     header('Location: /pages/login.php');
+     header('Location:pages/login.php');
 }
   // header('Location: /pages/login.php');
  ?>

@@ -83,10 +83,12 @@
 						$res=$db->query($q);
 						while($r=$res->fetch_assoc())
 						{
-							echo "  || ". $row['c']." ". $r['badge_name'] ;echo " ||  ";
+							$data[$r['badge_name']]=$row['c'];
+							// echo "  || ". $row['c']." ". $r['badge_name'] ;echo " ||  ";
 						}
 										 // $data[] = $row;
 					}
+					return json_encode($data);
 				}
 				else{
 					echo "No badges received yet";
@@ -101,9 +103,9 @@
 		        $query = "SELECT commit_id, COUNT(*) as c from t_commit_review group by commit_id order by c DESC
 				LIMIT 5";
 				$result = $db->query( $query );
-				$c=array();
+				// $c=array();
 				$i=0;
-				$b=array();
+				// $b=array();
 				$data = array();
 				// Print out rows
 				while ($row = $result->fetch_assoc()) {
@@ -117,7 +119,8 @@
 					while($row1 =$res->fetch_assoc()){
 						// echo $value['c'];
 						$row1['badge_sum']=$value['c'];
-						echo $row1['commit_messg']." of ".$row1['commit_author']." has received ".$row1['badge_sum']." badges";echo "<br>";
+						$m= $row1['commit_messg']." of ".$row1['commit_author']." has received ".$row1['badge_sum']." badges";echo "<br>";
+						echo $m;
 						// // $row1++=$value['c'];
 						// print_r($row1);echo"<br>";
 					// $b= json_encode($row1,true);

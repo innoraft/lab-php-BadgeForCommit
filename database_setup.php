@@ -82,7 +82,7 @@ if ($conn->query($q5) === TRUE) {
     echo "Error creating table: " . $conn->error;
 }
 $conn->close();
- header('Location: /pages/login.php');
+ header('Location:pages/login.php');
 
 
 ?>
