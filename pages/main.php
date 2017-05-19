@@ -24,7 +24,10 @@ $res=$db->query($query1);
 
 <div class="col-sm-10 col-sm-offset-1">
 
-<div class="logout"><button><a href='logout.php'>LOGOUT</a></button></div>
+<!-- <div class="logout"><a href='logout.php'>LOGOUT</a></div> -->
+<form  class="logout" action="logout.php" method="post">
+                    <input type="submit" name="logout" value="LOGOUT">
+</form>
 <h1 class="h11">PICK A BADGE FOR A COMMIT</h1><br>
 <!--  <form id ="msgfrm" method="post"> -->
 <div id="msgfrm">

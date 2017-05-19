@@ -1,3 +1,4 @@
+
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 <link href="../assets/css/stylesheet.css" rel="stylesheet">
 
@@ -110,7 +111,7 @@ function getcommits($token){
                     <?php 
                         // echo $messg[$k];
                         // echo "<br>";
-                        echo "<input type='checkbox' onClick=".  
+                        echo "<input type='checkbox' id='cb".$k."' onClick=".  
                              "showAlert('".
                              $sha[$k].
                              "','".
@@ -120,7 +121,8 @@ function getcommits($token){
                              "','".
                              urlencode($messg[$k]).
                              "','".
-                             $code[$k]."')>";
+                             $code[$k]."')><label for='cb".$k."'><img src='../assets/images/plus.png'></label>
+";
      
      // $var = " ";
 
@@ -232,5 +234,7 @@ function raw_url($link){
 
 
 ?>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+
 
 

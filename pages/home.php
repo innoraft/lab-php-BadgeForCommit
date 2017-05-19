@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+<link href="../assets/css/stylesheet.css" rel="stylesheet">
+	<title>home page</title>
+</head>
+<body>
+
+
+
+
 <?php
 include("../includes/githubServices.php");
 include("../includes/databaseservices.php");
@@ -62,3 +74,6 @@ else{
 ?>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
