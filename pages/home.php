@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
+
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-<link href="../assets/css/stylesheet.css" rel="stylesheet">
-	<title>home page</title>
-</head>
-<body>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link href="../assets/css/style.css" rel="stylesheet">
+
+
+	
 
 
 
@@ -40,7 +43,7 @@ if(isset($_SESSION['uid']))
 									$commits=new githubServices();
 									$commitslist=$commits->getcommits($_SESSION['token']);
 									?>
-									<div class="container body1">
+									<!-- <div class="container body1">
 									<div class="col-sm-10 col-sm-offset-1">
 									<div style="border:1px solid black;text-align: center;">
 									 <h3> LATEST SUMMARY</h3>
@@ -49,7 +52,7 @@ if(isset($_SESSION['uid']))
 							        </div>
 							        </div>
 							        </div>
-
+ -->
 							            <?php
 
 									
@@ -75,5 +78,3 @@ else{
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>

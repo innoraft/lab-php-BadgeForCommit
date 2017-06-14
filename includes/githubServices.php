@@ -1,8 +1,8 @@
-
+<html>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-<link href="../assets/css/stylesheet.css" rel="stylesheet">
+<link href="../assets/css/style.css" rel="stylesheet">
 
-
+<body>
 <?php
 // include("/databaseservices.php");
 
@@ -62,6 +62,7 @@ function getcommits($token){
         $i=0;
         $a=array();
         $ch=curl_init();
+
         $url="https://api.github.com/search/commits?q=author:".$_SESSION['user']."&type=Commits&access_token=$token&page=".$_SESSION['next']."&per_page=20";
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept:application/vnd.github.cloak-preview",
@@ -91,12 +92,42 @@ function getcommits($token){
             } 
             if(sizeof($com)!=0){  
         ?>   
+<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Badge For a Commit</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="../pages/main.php">Review</a></li>
+      <li><a href="../pages/logout.php">Logout</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="../pages/summary.php">Statistics</a></li>
+      <li><a href="../pages/dashboard.php">Summary</a></li>
+    </ul>
+  </div>
+</nav>
 
-                <div class="align">        
-<div class="container body1">
-<div class="col-sm-10 col-sm-offset-1">
-                <form method="post">
-                <h1 class="h11">ADD YOUR COMMITS FOR REVIEW</h1><br>
+<!-- <div id="popup" class="modal-box"> 
+                      <header>
+                      <a href="#" class="js-modal-close close">×</a>
+                      <h3>Weekly Summary: The Dashboard</h3>
+                      </header>
+                      <div class="modal-body">
+                      <pre ><code id="bookId"> </code></pre>
+                      </div>
+                      <footer>
+                      <a href="#" class="js-modal-close">Close</a>
+                      </footer>
+</div> -->
+
+               <div class=background>
+               <div class="overlay">
+               <h1 style="margin: 0px; padding-top: 5%; text-align: center;z-index: 4;color: white;">PICK YOUR COMMITS</h1><br>
+               <!--  <form method="post"> -->
+                <div class="list">
+                
                 <?php 
                     // $a = "kjaskjSHKJHAKsj";
                     // $myVar = (string)$a;
@@ -135,33 +166,29 @@ function getcommits($token){
                            echo $var[2];
 
 
-                    echo "<a href=".$link[$k].">.....link</a>";?></div><br>
+                    echo "<a style='color:white;' href=".$link[$k]." target='_blank'>.....link</a>";?></div><br>
+
                 <?php      
                     }
+                    if(sizeof($com)==20){
                 ?>
+
+
                 
-                </form>
-       
-
-              
+               <!--  </form> -->
+               
                 <form  class="nex" action="../pages/nextpage.php" method="post">
-                    <input type="submit" name="nextpage" value="NEXTPAGE">
-                </form>
-                <form  class="nex1" action="../pages/previous.php" method="post">
-                    <input type="submit" name="prepage" value="PREV PAGE">
-                </form>
-   
-                 <form  class="main" action="../pages/main.php" method="post">
-                    <input type="submit" name="mainpage" value="GO TO REVIEW">
-                </form>
-
-
-            
+                    <input type="submit" name="nextpage" value="More Commits">
+                </form>  
+       <?php } ?>
+        </div>
+        </div>
+              
+       </div>            
           
     
-</div>
-</div>
- </div>
+
+
 
 
 <!--  <div class="container body1">
@@ -189,6 +216,37 @@ function getcommits($token){
 }
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- <script>
+  $(function(){
+      var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+      $('a[data-modal-id]').click(function(e) {
+      var myBookId = $(this).data('id');
+      // var code=atob(myBookId);
+      
+      $("#bookId").html(  myBookId );
+      e.preventDefault();
+      $("body").append(appendthis);
+      $(".modal-overlay").fadeTo(500, 0.7);
+
+      var modalBox = $(this).attr('data-modal-id');
+      $('#'+modalBox).fadeIn($(this).data());
+      }); 
+      $(".js-modal-close, .modal-overlay").click(function() {
+      $(".modal-box, .modal-overlay").fadeOut(500, function() {
+      $(".modal-overlay").remove();
+      });
+      });
+      $(window).resize(function() {
+      $(".modal-box").css({
+      top: ($(window).height() - $(".modal-box").outerHeight()) / 50,
+      left: ($(window).width() - $(".modal-box").outerWidth()) /14
+      });
+      });
+      $(window).resize();
+    });
+</script> -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 
 
 
@@ -238,3 +296,5 @@ function raw_url($link){
 
 
 
+</body>
+</html>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+ session_start();
 $a=$_POST['cid'];
 $b=$_POST['bid'];
 $c=$_SESSION['user'];
@@ -14,13 +14,9 @@ $query1="SELECT * FROM t_commit_review WHERE commit_reviewer_id='".$c."' AND bad
 				        $res = $db->query($query1);
 				        $num= $res->num_rows;
 
-// if($num>=1){
-// 	$sql="DELETE FROM t_commit_review WHERE commit_reviewer_id='".$c."' AND badge_id='".$b."'  AND commit_id='".$a."'";
-// }
-if($num==0){
-$sql= "INSERT INTO t_commit_review(commit_id,badge_id,commit_reviewer_id,commit_review_created) VALUES('$a','$b','$c','$d')";
+if($num>=1){
+	$sql="DELETE FROM t_commit_review WHERE commit_reviewer_id='".$c."' AND badge_id='".$b."'  AND commit_id='".$a."'";
 }
-
 mysqli_query($db,$sql);
 
 

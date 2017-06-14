@@ -1,4 +1,6 @@
- <link href="../assets/css/stylesheet.css" rel="stylesheet">
+ <link href="../assets/css/style.css" rel="stylesheet">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <?php
 		session_start();
 		class DatabaseServices {
@@ -94,6 +96,29 @@
 				// 	echo "No badges received yet";
 				// }
 		    }
+
+
+		    function b_count($id,$b){
+				$data=array();
+				$list=array();
+				$configs = include('../config/config.php');
+		        $db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database"); 
+		        $query="SELECT count( * ) AS c
+						FROM t_commit_review
+						WHERE commit_id ='".$id."' and badge_id='".$b."'";
+		        $result=$db->query($query);
+               
+					 while ($row = $result->fetch_assoc()) 
+					 {
+						return $row['c'];
+					}
+					
+				
+				// else{
+				// 	echo "No badges received yet";
+				// }
+		    }
+
 
 
 		    function getdisplay(){
