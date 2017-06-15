@@ -36,7 +36,8 @@ $res=$db->query($query1);
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="summary.php">Statistics</a></li>
-        <li><a href="dashboard.php">Statistics</a></li>
+       <li><a href="dashboard.php">Weekly update</a></li>
+      <li><a href="profile.php"><span class="glyphicon glyphicon-qrcode"></span>&nbspProfile</a></li>
       <!-- <li><a href="#myModal" data-toggle="modal">Summary</a></li> -->
     </ul>
   </div>

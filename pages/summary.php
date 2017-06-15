@@ -11,7 +11,17 @@
 	width		: 100%;
 	height		: 500px;
 	font-size	: 11px;
-}					
+}		
+#chartdiv1 {
+  width   : 100%;
+  height    : 500px;
+  font-size : 11px;
+}   	
+#chartdiv2 {
+  width   : 100%;
+  height    : 500px;
+  font-size : 11px;
+}     		
 </style>
 
 
@@ -31,7 +41,8 @@ include("../includes/databaseservices.php");
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li  class="active"><a href="summary.php">Statistics</a></li>
-      <li><a href="dashboard.php">Summary</a></li>
+      <li><a href="dashboard.php">Weekly update</a></li>
+      <li><a href="profile.php"><span class="glyphicon glyphicon-qrcode"></span>&nbspProfile</a></li>
     </ul>
   </div>
 </nav>
@@ -48,10 +59,18 @@ include("../includes/databaseservices.php");
 				// $c=array();
 				$i=0;
 				$n=array();
+        $q=array();
+        $r=array();
+        $dat1=array();
 				$dat=array();
 				// $b=array();
 				$data = array();
 				$m=array();
+
+
+        $rep=array();
+        $rn=array();
+        $dat2=array();
 				// Print out rows
 				while ($row = $result->fetch_assoc()) {
 				 $data[] = $row;
@@ -67,6 +86,12 @@ include("../includes/databaseservices.php");
 						$m['messg']= $row1['commit_messg'];
 						$m['count']=$row1['badge_sum'];
                         array_push($n,$m);
+            $q['author']=$row1['commit_author'];
+            $q['count']=$row1['badge_sum'];
+            array_push($r, $q);
+            $rep['repo']=$row1['commit_repo'];
+            $rep['count']=$row1['badge_sum'];
+            array_push($rn, $rep);
 						
 						// // $row1++=$value['c'];
 						// print_r($row1);echo"<br>";
@@ -77,6 +102,8 @@ include("../includes/databaseservices.php");
 					// echo $res;
 				}
 				$dat=(json_encode($n));
+        $dat1=(json_encode($r));
+        $dat2=(json_encode($rn));
 				// echo $dat;
 				   
 ?>
@@ -124,9 +151,91 @@ var chart = AmCharts.makeChart( "chartdiv", {
 } );
 </script>
 
+
+<script>
+var chart = AmCharts.makeChart( "chartdiv1", {
+  "type": "serial",
+  "theme": "light",
+  "dataProvider":<?php echo $dat1 ?> ,
+  "valueAxes": [ {
+    "gridColor": "#FFFFFF",
+    "gridAlpha": 0.2,
+    "dashLength": 0
+  } ],
+  "gridAboveGraphs": true,
+  "startDuration": 1,
+  "graphs": [ {
+    "balloonText": "[[category]]: <b>[[value]]</b>",
+    "fillAlphas": 0.8,
+    "lineAlpha": 0.2,
+    "type": "column",
+    "valueField": "count"
+  } ],
+  "chartCursor": {
+    "categoryBalloonEnabled": false,
+    "cursorAlpha": 0,
+    "zoomable": false
+  },
+  "categoryField": "author",
+  "categoryAxis": {
+    "gridPosition": "start",
+    "gridAlpha": 0,
+    "tickPosition": "start",
+    "tickLength": 20
+  },
+  "export": {
+    "enabled": true
+  }
+
+} );
+</script>
+
+
+<script>
+var chart = AmCharts.makeChart( "chartdiv2", {
+  "type": "serial",
+  "theme": "light",
+  "dataProvider":<?php echo $dat1 ?> ,
+  "valueAxes": [ {
+    "gridColor": "#FFFFFF",
+    "gridAlpha": 0.2,
+    "dashLength": 0
+  } ],
+  "gridAboveGraphs": true,
+  "startDuration": 1,
+  "graphs": [ {
+    "balloonText": "[[category]]: <b>[[value]]</b>",
+    "fillAlphas": 0.8,
+    "lineAlpha": 0.2,
+    "type": "column",
+    "valueField": "count"
+  } ],
+  "chartCursor": {
+    "categoryBalloonEnabled": false,
+    "cursorAlpha": 0,
+    "zoomable": false
+  },
+  "categoryField": "repo",
+  "categoryAxis": {
+    "gridPosition": "start",
+    "gridAlpha": 0,
+    "tickPosition": "start",
+    "tickLength": 20
+  },
+  "export": {
+    "enabled": true
+  }
+
+} );
+</script>
+
+
 <!-- HTML -->
 <div class="overlay">
-<div id="chartdiv"></div>
+<div id="chartdiv"></div><br><br>
+<div id="chartdiv1"></div><br><br>
+<div id="chartdiv2"></div>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </div>					
 

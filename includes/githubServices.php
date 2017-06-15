@@ -2,7 +2,7 @@
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 <link href="../assets/css/style.css" rel="stylesheet">
 
-<body>
+
 <?php
 // include("/databaseservices.php");
 
@@ -59,6 +59,7 @@ function getcommits($token){
         $messg=array();
         $com=array();
         $commit_sha=array();
+        $repo=array();
         $i=0;
         $a=array();
         $ch=curl_init();
@@ -82,12 +83,13 @@ function getcommits($token){
                 $link[$i]=$value['html_url'];
                 $author[$i]=$value['author']['login'];
                 $messg[$i]=$value['commit']['message'];
+                $repo[$i]=$value['repository']['full_name'];
             $i++; 
             }
                 
          }
          for($j=0;$j<sizeof($sha);$j++){
-                $var = $sha[$j].','.$author[$j].','.$messg[$j].','.$link[$j].','.$code[$j];
+                $var = $sha[$j].','.$author[$j].','.$messg[$j].','.$link[$j].','.$code[$j].','.$repo[$j];
                 $com[$j] = $var;
             } 
             if(sizeof($com)!=0){  
@@ -98,13 +100,14 @@ function getcommits($token){
       <a class="navbar-brand" href="#">Badge For a Commit</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><a href="../pages/home.php">Home</a></li>
       <li><a href="../pages/main.php">Review</a></li>
       <li><a href="../pages/logout.php">Logout</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="../pages/summary.php">Statistics</a></li>
-      <li><a href="../pages/dashboard.php">Summary</a></li>
+      <li><a href="../pages/dashboard.php">Weekly update</a></li>
+      <li><a href="../pages/profile.php"><span class="glyphicon glyphicon-qrcode"></span>&nbspProfile</a></li>
     </ul>
   </div>
 </nav>
@@ -152,6 +155,8 @@ function getcommits($token){
                              "','".
                              urlencode($messg[$k]).
                              "','".
+                             $repo[$k].
+                             "','".
                              $code[$k]."')><label for='cb".$k."'><img src='../assets/images/plus.png'></label>
 ";
      
@@ -177,9 +182,10 @@ function getcommits($token){
                 
                <!--  </form> -->
                
-                <form  class="nex" action="../pages/nextpage.php" method="post">
+                <form  class="nex col-lg-offset-5 col-xs-offset-5" action="../pages/nextpage.php" method="post">
                     <input type="submit" name="nextpage" value="More Commits">
-                </form>  
+                </form> 
+              
        <?php } ?>
         </div>
         </div>
@@ -195,7 +201,7 @@ function getcommits($token){
     
  </div> -->
  <script>
-  function showAlert(sha, author, link, message,code) { 
+  function showAlert(sha, author, link, message,repo,code) { 
     // alert(sha + author + link + message);
    var myText = "This is inserted!";
    $.ajax({
@@ -206,7 +212,9 @@ function getcommits($token){
                 did: author,
                 eid: link,
                 fid: message,
+                rid: repo,
                 gid: code
+               
             },
    dataType: "json",
    success:function(data){
@@ -284,17 +292,5 @@ function raw_url($link){
 
     }
 
-    
-
-
-}
-
-
-
+    }
 ?>
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-
-
-
-</body>
-</html>

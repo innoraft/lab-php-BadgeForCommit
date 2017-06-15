@@ -7,6 +7,7 @@ $b=$_POST['did'];
 $c=$_POST['eid'];
 $d=urldecode($_POST['fid']);
 $e=$_POST['gid'];
+$repo=$_POST['rid'];
 $code_url=new githubServices();
 $url=$code_url->raw_url($e);
 $loc=json_decode($url,true);
@@ -29,7 +30,7 @@ $query1="SELECT * FROM t_commits WHERE commit_git_hash='".$a."'";
 				        	$sql= "DELETE FROM t_commits WHERE commit_git_hash='".$a."'";
 				        }
 				        else{
-						$sql= "INSERT INTO t_commits(commit_git_hash,commit_author,commit_link,commit_messg,commit_code) VALUES('$a','$b','$c','$d','$base_64')";
+						$sql= "INSERT INTO t_commits(commit_git_hash,commit_author,commit_link,commit_messg,commit_code,commit_repo) VALUES('$a','$b','$c','$d','$base_64','$repo')";
 }
 mysqli_query($db,$sql);
 mysqli_close($db);

@@ -50,6 +50,7 @@ $q3="CREATE TABLE `t_commits` (
   `commit_messg` varchar(50) DEFAULT NULL,
   `commit_author` varchar(50) DEFAULT NULL,
   `commit_link` varchar(80) DEFAULT NULL,
+  `commit_repo` varchar(80) DEFAULT NULL,
   `commit_code` blob,
   PRIMARY KEY (`commit_id`)
 )";
@@ -81,6 +82,12 @@ if ($conn->query($q5) === TRUE) {
     echo "Table t_users created successfully";
 } else {
     echo "Error creating table: " . $conn->error;
+}
+$q6="INSERT INTO t_users(user_github_id,user_email,user_role_id) VALUES('harpreet16','harpreet.kaur@innoraft.com',1)";
+if ($conn->query($q6) === TRUE) {
+    echo "Admin created successfully";
+} else {
+    echo "Error creating admin: " . $conn->error;
 }
 $conn->close();
   header('Location:'.$_SESSION['server'].'pages/login.php');

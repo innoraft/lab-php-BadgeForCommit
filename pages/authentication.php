@@ -18,6 +18,7 @@
                       session_start();
                       $_SESSION['uid']=strtotime("now");
                     	$userinfo=$userservices->getUserInfo($access_token);
+                      // echo $userinfo;
                       $db_service= new DatabaseServices();
                       $db_service->newbadge();
                     	$display=$db_service->insertuserinfo($userinfo);

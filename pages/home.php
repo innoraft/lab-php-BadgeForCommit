@@ -8,9 +8,6 @@
 <link href="../assets/css/style.css" rel="stylesheet">
 
 
-	
-
-
 
 
 <?php
@@ -37,8 +34,30 @@ if(isset($_SESSION['uid']))
 					 if($_SESSION['uid']=$stamp)
 					 {
 									if(empty($mail)){
-										$message = "PLEASE MAKE YOUR EMAIL_ID ON GITHUB ACCOUNT PUBLIC TO RECEIVE WEEKLY NOTIFICATIONS....IGNORE IF ALREADY SET";
-										echo "<script type='text/javascript'>alert('$message');</script>";
+										// $message = "PLEASE MAKE YOUR EMAIL_ID ON GITHUB ACCOUNT PUBLIC TO RECEIVE WEEKLY NOTIFICATIONS....IGNORE IF ALREADY SET";
+										// echo "<script type='text/javascript'>alert('$message');</script>";?>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">REGISTER</h4>
+            </div>
+            <div class="modal-body">
+                <p>Register to get the latest updates straight in your inbox.</p>
+                <form class="feedback">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email Address">
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><?php
 									} 
 									$commits=new githubServices();
 									$commitslist=$commits->getcommits($_SESSION['token']);
@@ -75,6 +94,27 @@ else{
 }
 
 ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+        $("button#submit").click(function(){
+$.ajax({
+type: "POST",
+url: "mail_sub.php",
+data: $('form.feedback').serialize(),
+success: function(message){
+	// alert("success");
+// $("#feedback").html(message)
+// $("#feedback-modal").modal('hide');
+},
+error: function(){
+alert("Error");
+}
+});
+});
+
+    });
+</script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
