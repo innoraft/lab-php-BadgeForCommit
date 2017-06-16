@@ -21,8 +21,8 @@ class githubServices {
 	    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Accept: application/json'));
 	    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 
-	 	$output=curl_exec($ch);			
-		$a=json_decode($output);
+	   	$output=curl_exec($ch);			
+		  $a=json_decode($output);
 	   	$b=$a->access_token;
 	    curl_close($ch);
 	    return $b;
@@ -85,14 +85,18 @@ function getcommits($token){
                 $messg[$i]=$value['commit']['message'];
                 $repo[$i]=$value['repository']['full_name'];
             $i++; 
-            }
-                
+            }                
          }
+
+
          for($j=0;$j<sizeof($sha);$j++){
                 $var = $sha[$j].','.$author[$j].','.$messg[$j].','.$link[$j].','.$code[$j].','.$repo[$j];
                 $com[$j] = $var;
             } 
-            if(sizeof($com)!=0){  
+            
+
+
+if(sizeof($com)!=0){  
         ?>   
 <nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
   <div class="container-fluid">
@@ -190,7 +194,8 @@ function getcommits($token){
         </div>
         </div>
               
-       </div>            
+       </div>
+           
           
     
 
@@ -255,11 +260,7 @@ function getcommits($token){
 </script> -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-
-
-
- 
-       
+     
                 <?php 
                 }
         else{

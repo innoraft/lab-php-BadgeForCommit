@@ -16,6 +16,7 @@
 }		</style>
 
 <?php
+include("../includes/databaseservices.php");
 $configs = include('../config/config.php');
 session_start();
 $row=array();
@@ -62,24 +63,35 @@ $t=array();
 	<div class="overlay ">
 		<div class="container">
 			<div class="list">
-				<h1><?php echo $_SESSION['user']?></h1>
+				<div style="margin-top: 5%" class="dropdown">
+           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <?php echo $_SESSION['user'];?>
+            <span class="caret"></span>
+           </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+             <li><a href="#a">You Added</a></li>
+             <li><a href="#b">Your Top 5</a></li>
+             <li><a href="#c">Admin</a></li>
+             <li><a href="#d">Badges</a></li>
+            </ul>
+          </div>
 				<h4 class="glyphicon glyphicon-envelope"><?php echo $mail ?></h4>
 			</div>	
 
 			<br>	
-			<div class="panel panel-default">
+			<div id =a class="panel panel-default">
      			 <div class="panel-heading"><h3>You Added</h3></div>
      			 <div class="panel-body"><?php
 					while( $array1 = mysqli_fetch_array($res1) ){
-					 	echo $array1['commit_messg'];echo "<br>";
+					 	echo $array1['commit_messg'];echo "<br><br>";
 
 					 }
 				 	?>				 	
 				  </div>
-    		</div>		
+    	</div>		
 
-    		<br>
-    		<div class="panel panel-default">
+    		<br><br>
+    		<div id=b class="panel panel-default">
      			 <div class="panel-heading"><h3>Your Top 5</h3></div>
      			 <div class="panel-body"><?php
 					$q = "SELECT commit_id,count(*) as c from t_commit_review where commit_id in(select commit_id from t_commits where commit_author='".$_SESSION['user']."') group by commit_id order by c DESC LIMIT 5";
@@ -195,7 +207,32 @@ var chart = AmCharts.makeChart( "chartdiv", {
 </script>
 <div id="chartdiv"></div>				 	
 				  </div>
-    		</div>			
+    		</div>
+
+      <br><br>
+     <div id =c class="panel panel-default">
+           <div class="panel-heading"><h3>Create Admin</h3></div>
+           <div class="panel-body">
+           <?php $d=new DatabaseServices();
+           $d->admin();
+           ?>
+          </div>
+      </div>   
+
+<!-- 
+        <br><br>
+     <div id =d class="panel panel-default">
+           <div class="panel-heading"><h3>Create Badges</h3></div>
+           <div class="panel-body">
+            <?php $e=new DatabaseServices();
+           $e->addbadge();?>
+          </div>
+      </div>     
+ -->
+
+
+
+
 		</div>
     </div>
 </div>
