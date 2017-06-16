@@ -206,25 +206,26 @@ form.nex1 {
 .banner{
   text-align: center;
   font-size: 50px;
-  font-family: railway_thin;
+  font-family:ral;
   position: absolute;
   top:2%;
   left: 26%;
   color: black;
 }
 @font-face{
-font-family: railway_thin;
-src:url("../fonts/Macondo/Macondo-Regular.ttf");
+font-family: ral;
+src:url("../fonts/Raleway/Raleway-Bold.ttf");
 }
+
 #sub_button{
   position:absolute;
-  top:40%;
+  top:30%;
   left:40%;
   padding:5px;
   font-size: 20px;
   color:rgb(249, 244, 254);
-  background-color:#517157;
-   font-family: but;
+  background-color:#141525;
+   font-family: but1;
    border-radius: 10px;
    z-index: 5;
 }
@@ -243,7 +244,7 @@ src:url("../fonts/Raleway/Raleway-Light.ttf");
 }*/
 
 .overlay1{
-  background-color: #28a745;
+  background-color: #141525;
   height: 20%;
   color: white;
   font-family: but;

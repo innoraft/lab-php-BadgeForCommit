@@ -29,7 +29,7 @@ $t=array();
 					 while( $array = mysqli_fetch_array($res) ){
 					 	$stamp=$array['user_session_id'];
 					 	$mail=$array['user_email'];
-
+            $role=$array['user_role_id'];
 					 }
 
 					 $query1="SELECT commit_messg from t_commits where commit_author='".$_SESSION['user']."'";
@@ -219,16 +219,56 @@ var chart = AmCharts.makeChart( "chartdiv", {
           </div>
       </div>   
 
-<!-- 
+<?php
+if($role==1){
+?>
         <br><br>
      <div id =d class="panel panel-default">
            <div class="panel-heading"><h3>Create Badges</h3></div>
            <div class="panel-body">
-            <?php $e=new DatabaseServices();
-           $e->addbadge();?>
+
+
+          <form action="insert_image.php" method="post" enctype="multipart/form-data" id="uploadImageForm">
+          <div class="form-group">
+            <label for="fullName">Badge name</label>
+            <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Name">
           </div>
-      </div>     
- -->
+          <div class="form-group">
+            <label for="fullName">Badge description</label>
+            <input type="text" class="form-control" id="desc" name="desc" placeholder="description">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Badge icon</label>            
+            <div id="kv-avatar-errors-2" class="center-block" style="width:800px;display:none"></div>
+ 
+            <div class="kv-avatar center-block" style="width:200px">
+                <input id="avatar-2" name="userImage" type="file" class="file-loading">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+           <!--  <form  class="feedback"  method="post" name="changer">       
+                    <div class="form-group"" >
+                      <input name="image"  enctype="multipart/form-data" accept="image/jpeg image/png" type="file">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" placeholder="Badge_name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="author" class="form-control" placeholder="Badge_author" value="<?php echo $_SESSION['user']?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="desc" class="form-control" placeholder="Badge_description">
+                    </div>
+                    <button  value="Submit" id="submit" type="submit" class="btn btn-primary">Submit</button>
+               
+            </form> -->
+          </div>
+      </div>  
+<?php
+}
+?>   
+
 
 
 
@@ -239,5 +279,82 @@ var chart = AmCharts.makeChart( "chartdiv", {
 
 
 
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- jquery -->
+    <script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+    <!-- bootsrap js -->
+    <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- file input -->
+    <script src="assets/fileinput/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>    
+    <script src="assets/fileinput/js/plugins/sortable.min.js" type="text/javascript"></script>  
+    <script src="assets/fileinput/js/plugins/purify.min.js" type="text/javascript"></script>
+    <script src="assets/fileinput/js/fileinput.min.js"></script>
+ 
+    <script type="text/javascript">
+        var btnCust = '<button type="button" class="btn btn-default" title="Add picture tags" ' + 
+            'onclick="alert(\'Call your custom code here.\')">' +
+            '<i class="glyphicon glyphicon-tag"></i>' +
+            '</button>'; 
+             
+        $("#avatar-2").fileinput({
+        overwriteInitial: true,
+        maxFileSize: 1500,
+        showClose: false,
+        showCaption: false,
+        showBrowse: false,
+        browseOnZoneClick: true,
+        removeLabel: '',
+        removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+        removeTitle: 'Cancel or reset changes',
+        elErrorContainer: '#kv-avatar-errors-2',
+        msgErrorClass: 'alert alert-block alert-danger',
+        defaultPreviewContent: '<img src="uploads/default-avatar.jpg" alt="Your Avatar" style="width:160px"><h6 class="text-muted">Click to select</h6>',
+        layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
+        allowedFileExtensions: ["jpg", "png", "gif"]
+        });
+    </script>
+
+
+    <script>
+$(document).ready(function() {
+            $("#uploadImageForm").unbind('submit').bind('submit', function() {
+ 
+                var form = $(this);
+                var formData = new FormData($(this)[0]);
+ 
+                $.ajax({
+                    url: form.attr('action'),
+                    type: form.attr('method'),
+                    data: formData,
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    async: false,
+                    success:function(response) {
+                        if(response.success == true) {
+                            $("#messages").html('<div class="alert alert-success alert-dismissible" role="alert">'+
+                          '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                          response.messages + 
+                        '</div>');
+ 
+                            $('input[type="text"]').val('');
+                            $(".fileinput-remove-button").click();
+                        }
+                        else {
+                            $("#messages").html('<div class="alert alert-warning alert-dismissible" role="alert">'+
+                          '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                          response.messages + 
+                        '</div>');
+                        }
+                    }
+                });
+ 
+                return false;
+            });
+        });
+    </script>
+
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
