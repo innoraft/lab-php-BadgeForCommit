@@ -3,6 +3,7 @@
 <link href="../assets/css/style.css" rel="stylesheet">
 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
          rel = "stylesheet">
+ <link rel="stylesheet" href="../assets/WOW-master/css/libs/animate.css">
          
 
 <?php
@@ -69,8 +70,8 @@ $res=$db->query($query1);
                <!--  <form method="post"> -->
 <div class="container">
 <div class="row">
-<div class="col-sm-11 list1">
-<h1 style="margin: 0px; padding-top: 5%;z-index: 4;color: white;">Pick a badge</h1><br>
+<div class="col-sm-11 list1 wow fadeIn"  data-wow-duration="2s" >
+<h1 style="margin: 0px; padding-top: 5%;z-index: 4;color: white;" >Pick a badge</h1><br>
 
  <?php
 
@@ -137,7 +138,7 @@ $res=$db->query($query1);
 ?>
 
 </div>
-<nav class="col-sm-1">
+<nav class="col-sm-1 wow pulse">
 <ul class="badge nav nav-pills nav-stacked list1" data-spy="affix"  data-offset-top="105">
     <?php 
                             $query2="SELECT *FROM t_badge";
@@ -279,3 +280,15 @@ else{
 
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../assets/WOW-master/dist/wow.min.js"></script>
+
+  <script>
+  wow = new WOW(
+  {
+  boxClass: 'wow',
+  animateClass: 'animated',
+  offset: 100
+  }
+  );
+  wow.init();
+  </script>

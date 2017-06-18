@@ -1,6 +1,7 @@
 <!-- <link href="..assets/css/stylesheet.css" rel="stylesheet"> 
  -->
  <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+ <link rel="stylesheet" href="../assets/WOW-master/css/libs/animate.css">
  <link href="../assets/css/style.css" rel="stylesheet">
  <?php
  session_start();
@@ -13,8 +14,8 @@ if(!isset($_SESSION['uid'])){
 			<div class="ha">
 					<form action ="authentication.php" >
 					 <!-- <img src="../assets/images/logo.png" id="logo" class="img-responsive" > -->
-					 <h1 class="banner"> A BADGE FOR A COMMIT</h1>
-			 		 <input id="sub_button" type="submit" value="LOGIN WITH GITHUB">
+					 <h1 class="banner wow fadeIn"> A BADGE FOR A COMMIT</h1>
+			 		 <input id="sub_button" class="wow pulse" type="submit" value="LOGIN WITH GITHUB">
 			 
 					</form>
 			</div>
@@ -35,3 +36,19 @@ if(!isset($_SESSION['uid'])){
 }
 else
 	header('location:'.$_SESSION['server'].'pages/home.php');
+?>
+
+
+<script src="../assets/WOW-master/dist/wow.min.js"></script>
+
+  <script>
+  wow = new WOW(
+  {
+  boxClass: 'wow',
+  animateClass: 'animated',
+  offset: 100
+  }
+  );
+  wow.init();
+  </script>
+

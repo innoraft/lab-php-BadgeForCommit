@@ -2,6 +2,7 @@
 <link href="../assets/css/style.css" rel="stylesheet">
 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
          rel = "stylesheet">
+<link rel="stylesheet" href="../assets/WOW-master/css/libs/animate.css">
 
 <nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
   <div class="container-fluid">
@@ -24,7 +25,7 @@
 <div class="background">
 <div class="overlay">
 <div class="container" style="padding:10%">
-<div class="panel panel-default">
+<div class="panel panel-default wow fadeIn" data-wow-duration="2s" >
 <div class="panel-heading"><h3>TOP 5 RATED</h3></div>
 <div class="panel-body"><?php
 
@@ -111,4 +112,15 @@ $configs = include('../config/config.php');
 
 
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/WOW-master/dist/wow.min.js"></script>
 
+  <script>
+  wow = new WOW(
+  {
+  boxClass: 'wow',
+  animateClass: 'animated',
+  offset: 100
+  }
+  );
+  wow.init();
+  </script>

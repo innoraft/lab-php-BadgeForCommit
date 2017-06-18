@@ -182,9 +182,10 @@
 				}
 				}
 				else{
+					echo"<h4>Admin rights are reserved for:</h4>";
 					$q1="SELECT user_github_id from t_users where user_role_id=1 and user_github_id!='".$_SESSION['user']."'";
 					$r2=$db->query($q1);
-					echo"<h4>Admin rights are reserved for:</h4>";
+					
 					while($r3 = $r2->fetch_assoc()){
 
 						echo $r3['user_github_id'];echo"<br><br>";
@@ -222,10 +223,10 @@
 
 
 
-		 function addbadges(){
-		 	$configs = include('../config/config.php');
-		 	$db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database");
-		 }
+		 // function addbadges(){
+		 // 	$configs = include('../config/config.php');
+		 // 	$db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database");
+		 // }
 		    
 
 

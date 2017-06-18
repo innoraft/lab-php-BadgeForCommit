@@ -1,5 +1,6 @@
 <html>
-<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="../assets/WOW-master/css/libs/animate.css">
 <link href="../assets/css/style.css" rel="stylesheet">
 
 
@@ -131,7 +132,7 @@ if(sizeof($com)!=0){
 
                <div class=background>
                <div class="overlay">
-               <h1 style="margin: 0px; padding-top: 5%; text-align: center;z-index: 4;color: white;">PICK YOUR COMMITS</h1><br>
+               <h1 style="margin: 0px; padding-top: 5%; text-align: center;z-index: 4;color: white;" class=" wow pulse">PICK YOUR COMMITS</h1><br>
                <!--  <form method="post"> -->
                 <div class="list">
                 
@@ -144,7 +145,7 @@ if(sizeof($com)!=0){
                             // $b= $var[1];                    
                             // $c= $var[2];
                 ?>   
-                    <div class="col-sm-12 list" >
+                    <div class="col-sm-12 list wow slideInRight" >
 
                     <?php 
                         // echo $messg[$k];
@@ -198,7 +199,18 @@ if(sizeof($com)!=0){
            
           
     
+<script src="../assets/WOW-master/dist/wow.min.js"></script>
 
+  <script>
+  wow = new WOW(
+  {
+  boxClass: 'wow',
+  animateClass: 'animated',
+  offset: 100
+  }
+  );
+  wow.init();
+  </script>
 
 
 

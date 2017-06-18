@@ -8,6 +8,7 @@
 <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<link rel="stylesheet" href="../assets/WOW-master/css/libs/animate.css">
 <style>
 #chartdiv {
 	width		: 100%;
@@ -72,18 +73,20 @@ $t=array();
              <li><a href="#a">You Added</a></li>
              <li><a href="#b">Your Top 5</a></li>
              <li><a href="#c">Admin</a></li>
-             <li><a href="#d">Badges</a></li>
+             <?php 
+             if($role==1){?>
+             <li><a href="#d">Badges</a></li><?php } ?>
             </ul>
           </div>
 				<h4 class="glyphicon glyphicon-envelope"><?php echo $mail ?></h4>
 			</div>	
 
 			<br>	
-			<div id =a class="panel panel-default">
+			<div id =a class="panel panel-default wow slideInDown">
      			 <div class="panel-heading"><h3>You Added</h3></div>
      			 <div class="panel-body"><?php
 					while( $array1 = mysqli_fetch_array($res1) ){
-					 	echo $array1['commit_messg'];echo "<br><br>";
+					 	echo $array1['commit_messg'];echo "<br>";
 
 					 }
 				 	?>				 	
@@ -91,7 +94,7 @@ $t=array();
     	</div>		
 
     		<br><br>
-    		<div id=b class="panel panel-default">
+    		<div id=b class="panel panel-default  wow slideInDown">
      			 <div class="panel-heading"><h3>Your Top 5</h3></div>
      			 <div class="panel-body"><?php
 					$q = "SELECT commit_id,count(*) as c from t_commit_review where commit_id in(select commit_id from t_commits where commit_author='".$_SESSION['user']."') group by commit_id order by c DESC LIMIT 5";
@@ -210,7 +213,7 @@ var chart = AmCharts.makeChart( "chartdiv", {
     		</div>
 
       <br><br>
-     <div id =c class="panel panel-default">
+     <div id =c class="panel panel-default  wow slideInDown">
            <div class="panel-heading"><h3>Create Admin</h3></div>
            <div class="panel-body">
            <?php $d=new DatabaseServices();
@@ -223,7 +226,7 @@ var chart = AmCharts.makeChart( "chartdiv", {
 if($role==1){
 ?>
         <br><br>
-     <div id =d class="panel panel-default">
+     <div id =d class="panel panel-default  wow slideInDown">
            <div class="panel-heading"><h3>Create Badges</h3></div>
            <div class="panel-body">
 
@@ -358,3 +361,15 @@ $(document).ready(function() {
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/WOW-master/dist/wow.min.js"></script>
+
+  <script>
+  wow = new WOW(
+  {
+  boxClass: 'wow',
+  animateClass: 'animated',
+  offset: 100
+  }
+  );
+  wow.init();
+  </script>
