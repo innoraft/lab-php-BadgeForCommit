@@ -230,6 +230,7 @@ if(sizeof($com)!=0){
  </div> -->
  <script>
   function showAlert(sha, author, link, message,repo,code) { 
+  // $(this).toggleClass('icon1');
     // alert(sha + author + link + message);
    var myText = "This is inserted!";
    $.ajax({

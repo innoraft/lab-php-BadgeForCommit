@@ -125,7 +125,7 @@ $res=$db->query($query1);
                             {
                                 $return=$dash->b_count($array['commit_id'],$arr['badge_id']);
                             ?>
-                            <img src=<?php echo $arr['badge_icon']?>  onclick="review(<?php echo $array['commit_id']?>,<?php echo $arr['badge_id']?>)"><?php
+                            <img src=<?php echo $arr['badge_icon']?>  onclick="review(<?php echo $array['commit_id']?>,<?php echo $arr['badge_id']?>)"  style="max-height: 32px;max-width:32px;"><?php
                              echo'<span id="div'.$array['commit_id'].''.$arr['badge_id'].'">'.$return.'</span>'; 
                             }
                             ?>
@@ -147,7 +147,7 @@ $res=$db->query($query1);
                             while($arr=mysqli_fetch_array($res1))
                             {
                             ?>
-                            <div><button><img id=<?php echo $arr['badge_id'] ?> src=<?php echo $arr['badge_icon']?>  draggable='true' ondragstart='drag(event)'></button></div><?php 
+                            <div><img id=<?php echo $arr['badge_id'] ?> src=<?php echo $arr['badge_icon']?>  draggable='true' ondragstart='drag(event)' style="max-height: 32px;max-width:32px;"></div><?php 
                             }
      ?>
   
