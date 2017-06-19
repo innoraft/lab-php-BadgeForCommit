@@ -178,7 +178,7 @@
 		        $query = "SELECT user_github_id from t_users where user_role_id!=1 and user_github_id!='".$_SESSION['user']."'";
 				$result = $db->query( $query );
 				while ($row = $result->fetch_assoc()) {
-				 echo"<button type='button' class='btn btn-default' onclick="."addadmin('".$row['user_github_id']."')>"; print_r($row['user_github_id']); echo "</button>";
+				 echo"<button type='button' class='btn btn-default' onclick="."addadmin('".$row['user_github_id']."')".";this.disabled='disabled';>"; print_r($row['user_github_id']); echo "</button>";
 				}
 				}
 				else{
@@ -223,13 +223,7 @@
 
 
 
-		 function delcom($c){
-		 	$configs = include('../config/config.php');
-		    $db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database");
-		     $q="DELETE FROM t_commits WHERE commit_git_hash='".$c."'";
-		        $r=$db->query($q);
-		        echo"<button type='button' class='btn btn-default' onclick="."addadmin('".$row['user_github_id']."')>"; print_r($row['user_github_id']); echo "</button>";
-		 }
+		 
 
 
 
