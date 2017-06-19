@@ -223,6 +223,16 @@
 
 
 
+		 function delcom($c){
+		 	$configs = include('../config/config.php');
+		    $db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database");
+		     $q="DELETE FROM t_commits WHERE commit_git_hash='".$c."'";
+		        $r=$db->query($q);
+		        echo"<button type='button' class='btn btn-default' onclick="."addadmin('".$row['user_github_id']."')>"; print_r($row['user_github_id']); echo "</button>";
+		 }
+
+
+
 		 // function addbadges(){
 		 // 	$configs = include('../config/config.php');
 		 // 	$db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database");

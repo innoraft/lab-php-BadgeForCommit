@@ -1,6 +1,6 @@
 <html>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
- <link rel="stylesheet" href="../assets/WOW-master/css/libs/animate.css">
+<link rel="stylesheet" href="../assets/WOW-master/css/libs/animate.css">
 <link href="../assets/css/style.css" rel="stylesheet">
 
 
@@ -52,6 +52,8 @@ class githubServices {
 	    }
 
 function getcommits($token){
+        $configs = include('../config/config.php');
+        $db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database");
         
         $sha=array();
         $link=array();
@@ -144,6 +146,14 @@ if(sizeof($com)!=0){
                             // $a = $com[$k];                          
                             // $b= $var[1];                    
                             // $c= $var[2];
+        $query1="SELECT * FROM t_commits WHERE commit_git_hash='".$sha[$k]."'";
+        $res = $db->query($query1);
+        $num= $res->num_rows;
+        // echo $num;
+           
+       
+
+        if ($num == 0){
                 ?>   
                     <div class="col-sm-12 list wow slideInRight" >
 
@@ -178,7 +188,8 @@ if(sizeof($com)!=0){
 
                     echo "<a style='color:white;' href=".$link[$k]." target='_blank'>.....link</a>";?></div><br>
 
-                <?php      
+                <?php
+                }      
                     }
                     if(sizeof($com)==20){
                 ?>

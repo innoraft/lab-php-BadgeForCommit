@@ -34,7 +34,7 @@ $t=array();
             $role=$array['user_role_id'];
 					 }
 
-					 $query1="SELECT commit_messg from t_commits where commit_author='".$_SESSION['user']."'";
+					 $query1="SELECT commit_messg,commit_git_hash from t_commits where commit_author='".$_SESSION['user']."'";
 					 $res1=$db->query($query1);
 					 // while()
 
@@ -87,7 +87,12 @@ $t=array();
      			 <div class="panel-heading"><h3>You Added</h3></div>
      			 <div class="panel-body"><?php
 					while( $array1 = mysqli_fetch_array($res1) ){
-					 	echo $array1['commit_messg'];echo "<br>";
+					 	
+            // echo "<input type='checkbox' id='cb".$k."' onClick=".  
+            //                  "delcom('".
+            //                  "')><label for='cb".$k."'><img src='../assets/images/plus.png'></label>";
+            echo"<button type='button' class='btn btn-default' onclick="."delcom('".$array1['commit_git_hash']."')".";this.disabled='disabled';>"; echo "remove"; echo "</button>";echo $array1['commit_messg'];
+            echo "<br>";
 
 					 }
 				 	?>				 	
@@ -341,4 +346,26 @@ $(document).ready(function() {
   }
   );
   wow.init();
+  </script>
+
+
+  <script>
+    function delcom($a){
+       // $("#ajaxStart").attr("disabled", true);
+       $.ajax({
+                 type: "POST",
+                 url: "delcom.php",
+                 data: {  
+                    cid:$a
+                  },
+                dataType: "json",
+                 success: function(data){
+                 alert(data);           
+                 },
+                 error: function(data){
+                 // alert("added as admin");
+                }
+           
+            });
+    }
   </script>

@@ -34,4 +34,5 @@ $query1="SELECT * FROM t_commits WHERE commit_git_hash='".$a."'";
 }
 mysqli_query($db,$sql);
 mysqli_close($db);
+
 ?>
