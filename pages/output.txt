@@ -1,9 +1,9 @@
 Array
 (
-    [0] => {"commit_author":"Srijeeta","commit_messg":"added .gitgnore","badge_sum":"3"}
-    [1] => {"commit_author":"Srijeeta","commit_messg":"Revert \"color change\"\n\nThis reverts commit b2edbff","badge_sum":"2"}
-    [2] => {"commit_author":"Srijeeta","commit_messg":"Delete add your names~","badge_sum":"2"}
-    [3] => {"commit_author":"Srijeeta","commit_messg":"Exported Database","badge_sum":"2"}
-    [4] => {"commit_author":"Srijeeta","commit_messg":"first commit","badge_sum":"2"}
+    [0] => {"commit_author":"harpreet16","commit_messg":"latest commit","badge_sum":"3"}
+    [1] => {"commit_author":"harpreet16","commit_messg":"first upload","badge_sum":"3"}
+    [2] => {"commit_author":"harpreet16","commit_messg":"images aligned","badge_sum":"3"}
+    [3] => {"commit_author":"Srijeeta","commit_messg":"Delete add your names~","badge_sum":"2"}
+    [4] => {"commit_author":"Srijeeta","commit_messg":"Exported Database","badge_sum":"2"}
 )
 Invalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentInvalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentMessage has been sentInvalid address: Invalid address: Message has been sentMessage has been sentInvalid address: Invalid address: Message has been sent

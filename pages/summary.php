@@ -78,10 +78,10 @@ include("../includes/databaseservices.php");
 				// print_r($data);echo "<br>";
 				foreach ($data as $key => $value) {
 					// print_r($value);echo "<br>";
-					$query1= "SELECT commit_author,commit_messg FROM t_commits WHERE commit_id= '".$value['commit_id']."'";
+					$query1= "SELECT commit_author,commit_messg,commit_repo FROM t_commits WHERE commit_id= '".$value['commit_id']."'";
 					$res = $db->query( $query1);
 					while($row1 =$res->fetch_assoc()){
-						// echo $value['c'];
+						// print_r($row1);
 						$row1['badge_sum']=$value['c'];
 						$m['messg']= $row1['commit_messg'];
 						$m['count']=$row1['badge_sum'];
@@ -104,7 +104,7 @@ include("../includes/databaseservices.php");
 				$dat=(json_encode($n));
         $dat1=(json_encode($r));
         $dat2=(json_encode($rn));
-				// echo $dat;
+				// echo $dat2;
 				   
 ?>
 <!-- Styles -->
@@ -195,7 +195,7 @@ var chart = AmCharts.makeChart( "chartdiv1", {
 var chart = AmCharts.makeChart( "chartdiv2", {
   "type": "serial",
   "theme": "light",
-  "dataProvider":<?php echo $dat1 ?> ,
+  "dataProvider":<?php echo $dat2 ?> ,
   "valueAxes": [ {
     "gridColor": "#FFFFFF",
     "gridAlpha": 0.2,
