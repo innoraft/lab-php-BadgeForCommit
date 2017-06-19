@@ -1,11 +1,12 @@
 <!-- Resources -->
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-<link href="../assets/css/style.css" rel="stylesheet">
+
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
 <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<link href="../assets/css/style.css" rel="stylesheet">
 <style>
 #chartdiv {
 	width		: 100%;
@@ -32,7 +33,7 @@ include("../includes/databaseservices.php");
  <nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Badge For a Commit</a>
+      <a class="navbar-brand">Badge For a Commit</a>
     </div>
     <ul class="nav navbar-nav">
       <li ><a href="home.php">Home</a></li>

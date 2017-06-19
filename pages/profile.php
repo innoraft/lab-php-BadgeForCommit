@@ -1,6 +1,6 @@
 
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
-<link href="../assets/css/style.css" rel="stylesheet">
+
 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
          rel = "stylesheet">
          <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 <link rel="stylesheet" href="../assets/WOW-master/css/libs/animate.css">
+<link href="../assets/css/style.css" rel="stylesheet">
 <style>
 #chartdiv {
 	width		: 100%;
@@ -45,7 +46,7 @@ $t=array();
 <nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Badge For a Commit</a>
+      <a class="navbar-brand">Badge For a Commit</a>
     </div>
     <ul class="nav navbar-nav">
       <li ><a href="home.php">Home</a></li>
@@ -230,7 +231,7 @@ if($role==1){
            <div class="panel-heading"><h3>Create Badges</h3></div>
            <div class="panel-body">
 
-
+        <div id="messages"></div>
           <form action="insert_image.php" method="post" enctype="multipart/form-data" id="uploadImageForm">
           <div class="form-group">
             <label for="fullName">Badge name</label>
@@ -283,45 +284,13 @@ if($role==1){
 
 
 
-<!-- jquery -->
-    <script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
-    <!-- bootsrap js -->
-    <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <!-- file input -->
-    <script src="assets/fileinput/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>    
-    <script src="assets/fileinput/js/plugins/sortable.min.js" type="text/javascript"></script>  
-    <script src="assets/fileinput/js/plugins/purify.min.js" type="text/javascript"></script>
-    <script src="assets/fileinput/js/fileinput.min.js"></script>
- 
-    <script type="text/javascript">
-        var btnCust = '<button type="button" class="btn btn-default" title="Add picture tags" ' + 
-            'onclick="alert(\'Call your custom code here.\')">' +
-            '<i class="glyphicon glyphicon-tag"></i>' +
-            '</button>'; 
-             
-        $("#avatar-2").fileinput({
-        overwriteInitial: true,
-        maxFileSize: 1500,
-        showClose: false,
-        showCaption: false,
-        showBrowse: false,
-        browseOnZoneClick: true,
-        removeLabel: '',
-        removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
-        removeTitle: 'Cancel or reset changes',
-        elErrorContainer: '#kv-avatar-errors-2',
-        msgErrorClass: 'alert alert-block alert-danger',
-        defaultPreviewContent: '<img src="uploads/default-avatar.jpg" alt="Your Avatar" style="width:160px"><h6 class="text-muted">Click to select</h6>',
-        layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
-        allowedFileExtensions: ["jpg", "png", "gif"]
-        });
-    </script>
 
+ 
+  
 
     <script>
 $(document).ready(function() {
-            $("#uploadImageForm").unbind('submit').bind('submit', function() {
- 
+            $("#uploadImageForm").unbind('submit').bind('submit', function() { 
                 var form = $(this);
                 var formData = new FormData($(this)[0]);
  
@@ -346,7 +315,7 @@ $(document).ready(function() {
                         }
                         else {
                             $("#messages").html('<div class="alert alert-warning alert-dismissible" role="alert">'+
-                          '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+                          '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>error'+
                           response.messages + 
                         '</div>');
                         }

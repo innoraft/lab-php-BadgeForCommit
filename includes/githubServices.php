@@ -102,7 +102,7 @@ if(sizeof($com)!=0){
 <nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Badge For a Commit</a>
+      <a class="navbar-brand">Badge For a Commit</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="../pages/home.php">Home</a></li>
