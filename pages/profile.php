@@ -56,7 +56,7 @@ $t=array();
     <ul class="nav navbar-nav navbar-right">
       <li><a href="summary.php">Statistics</a></li>
       <li><a href="../pages/dashboard.php">Weekly update</a></li>
-      <li  class="active"><a href="#"><span class="glyphicon glyphicon-qrcode"></span>&nbspProfile</a></li>
+      <li  class="active"><a href="profile.php"><span class="glyphicon glyphicon-qrcode"></span>&nbspProfile</a></li>
     </ul>
   </div>
 </nav>
