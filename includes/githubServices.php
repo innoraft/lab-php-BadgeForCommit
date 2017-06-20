@@ -1,4 +1,3 @@
-<html>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../assets/WOW-master/css/libs/animate.css">
 <link href="../assets/css/style.css" rel="stylesheet">
@@ -155,12 +154,12 @@ if(sizeof($com)!=0){
 
         if ($num == 0){
                 ?>   
-                    <div class="col-sm-12 list wow slideInRight" >
+                    <div class="col-sm-12 list wow fadeIn" >
 
                     <?php 
                         // echo $messg[$k];
                         // echo "<br>";
-                        echo "<input type='checkbox' id='cb".$k."' onClick=".  
+                        echo "<input type='checkbox' id='cb".$k."' name='chk' onClick=".  
                              "showAlert('".
                              $sha[$k].
                              "','".
@@ -202,7 +201,10 @@ if(sizeof($com)!=0){
                     <input type="submit" name="nextpage" value="More Commits">
                 </form> 
               
-       <?php } ?>
+       <?php 
+       }
+
+       ?>
         </div>
         </div>
               
@@ -230,9 +232,7 @@ if(sizeof($com)!=0){
  </div> -->
  <script>
   function showAlert(sha, author, link, message,repo,code) { 
-  // $(this).toggleClass('icon1');
-    // alert(sha + author + link + message);
-   var myText = "This is inserted!";
+
    $.ajax({
    type: "POST",
    url:"../pages/submit.php",
@@ -247,46 +247,32 @@ if(sizeof($com)!=0){
             },
    dataType: "json",
    success:function(data){
-   alert(data);
+    $("input:checkbox[name=chk]:checked").prop( "checked", false ); 
+     
+  },
+  error:function(data){
+    // $("input:checkbox[name=chk]:checked").prop( "checked", false );
+     console.log(data);
+     // console.log(data.responseText === "entered"?'asa':'zzzzzzzz');
+    if(data.responseText === "entered"){
+       $("input:checkbox[name=chk]:checked").prop( "checked", true ); 
+       console.log(data.responseText);
+     }
+     else
+      $("input:checkbox[name=chk]:checked").prop( "checked", false ); 
+       // alert(data);
   },
 });
 }
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!-- <script>
-  $(function(){
-      var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
-      $('a[data-modal-id]').click(function(e) {
-      var myBookId = $(this).data('id');
-      // var code=atob(myBookId);
-      
-      $("#bookId").html(  myBookId );
-      e.preventDefault();
-      $("body").append(appendthis);
-      $(".modal-overlay").fadeTo(500, 0.7);
-
-      var modalBox = $(this).attr('data-modal-id');
-      $('#'+modalBox).fadeIn($(this).data());
-      }); 
-      $(".js-modal-close, .modal-overlay").click(function() {
-      $(".modal-box, .modal-overlay").fadeOut(500, function() {
-      $(".modal-overlay").remove();
-      });
-      });
-      $(window).resize(function() {
-      $(".modal-box").css({
-      top: ($(window).height() - $(".modal-box").outerHeight()) / 50,
-      left: ($(window).width() - $(".modal-box").outerWidth()) /14
-      });
-      });
-      $(window).resize();
-    });
-</script> -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
      
-                <?php 
-                }
+                <?php
+
+
+    } 
+      
         else{
                 header('location:../pages/main.php');
             }
@@ -297,25 +283,25 @@ if(sizeof($com)!=0){
 
 
 
-function raw_url($link){
-        $ch=curl_init();
-        $url=$link."?access_token=".$_SESSION['token'];
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,array(
-            "Accept: application/vnd.github.v3+json",
-            "Content-Type: text/plain",
-            "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
+// function raw_url($link){
+//         $ch=curl_init();
+//         $url=$link."?access_token=".$_SESSION['token'];
+//         curl_setopt($ch,CURLOPT_URL,$url);
+//         curl_setopt($ch, CURLOPT_HTTPHEADER,array(
+//             "Accept: application/vnd.github.v3+json",
+//             "Content-Type: text/plain",
+//             "User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 YaBrowser/16.3.0.7146 Yowser/2.5 Safari/537.36"
            
 
-        ));
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-        $output=curl_exec($ch);
+//         ));
+//         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+//         $output=curl_exec($ch);
         
        
-        curl_close($ch);
-        return $output;
+//         curl_close($ch);
+//         return $output;
 
-    }
+//     }
 
     }
 ?>
