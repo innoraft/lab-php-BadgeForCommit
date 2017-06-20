@@ -67,6 +67,10 @@ $configs = include('../config/config.php');
                       <a href="#" class="js-modal-close">Close</a>
                       </footer>
                       </div>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>                    
                       <script>
   $(function(){
       var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
@@ -96,7 +100,7 @@ $configs = include('../config/config.php');
       $(window).resize();
     });
 </script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
                       <?php
            
             echo "<br>";
