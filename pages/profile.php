@@ -139,7 +139,9 @@ $t=array();
                       <a href="#" class="js-modal-close">Close</a>
                       </footer>
                       </div>
-                      <script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script>
   $(function(){
       var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
       $('a[data-modal-id]').click(function(e) {
@@ -168,7 +170,7 @@ $t=array();
       $(window).resize();
     });
 </script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
                       <?php
            
             echo "<br>";
