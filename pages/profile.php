@@ -28,6 +28,7 @@ $t=array();
  $db =mysqli_connect("$configs->host","$configs->username","$configs->pass","$configs->database");
  $q = "SELECT commit_id,count(*) as c from t_commit_review where commit_id in(select commit_id from t_commits where commit_author='".$_SESSION['user']."') group by commit_id order by c DESC LIMIT 5";
           $result = $db->query( $q );
+          $num=$result->num_rows;
 					 $query="SELECT * FROM t_users WHERE user_github_id='".$_SESSION['user']."'";
 					 $res=  $db->query($query);
 
@@ -105,9 +106,9 @@ $t=array();
     		<br><br>
     		<div id=b class="panel panel-default  wow slideInDown">
      			 <div class="panel-heading"><h3>Your Top 5</h3></div>
-           <?php if($result->num_rows>=1){?>
+           
      			 <div class="panel-body"><?php
-					
+					if($num>=1){
 					 while ($row = $result->fetch_assoc()) {
         			$data[] = $row;
        					 }
@@ -217,9 +218,11 @@ var chart = AmCharts.makeChart( "chartdiv", {
 
 } );
 </script>
-<div id="chartdiv"></div>	 </div>			 	
-				 <?php } else?>
-      <div class="panel-body">No badges received yet</div>
+<div id="chartdiv"></div>	 <?php } else
+echo "You have not received badges yet";
+?> </div>			 	
+				
+     
     		</div>
 
 
