@@ -32,7 +32,7 @@ if(isset($_SESSION['uid']))
 
 					 }
 					 
-					 if($_SESSION['uid']=$stamp)
+					 if($_SESSION['uid']==$stamp)
 					 {
 									if(empty($mail)){
 										// $message = "PLEASE MAKE YOUR EMAIL_ID ON GITHUB ACCOUNT PUBLIC TO RECEIVE WEEKLY NOTIFICATIONS....IGNORE IF ALREADY SET";
@@ -109,7 +109,7 @@ success: function(message){
 // $("#feedback-modal").modal('hide');
 },
 error: function(){
-alert("Error");
+// alert("Error");
 }
 });
 });
