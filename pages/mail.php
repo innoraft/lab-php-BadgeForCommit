@@ -10,7 +10,7 @@ $query = "SELECT commit_id, COUNT(*) as c from t_commit_review group by commit_i
 LIMIT 5";
 $result = $db->query( $query );
 $c=array();
-$i=0;
+$i=1;
 $b=array();
 $data = array();
 // Print out rows
@@ -25,16 +25,17 @@ foreach ($data as $key => $value) {
 	while($row1 =$res->fetch_assoc()){
 		// echo $value['c'];
 		$row1['badge_sum']=$value['c'];
+		$message.='<div style="margin-left:50px;margin-right:50px;padding-left:10px; padding-right:10px;"><div style="margin-bottom: 20px;background-color: #fff;border: 1px solid transparent; border-radius: 4px; border-color: grey;"><div style=" padding: 10px 15px; border-bottom: 1px solid transparent;background-color:rgba(0,0,0,0.3);color:white;  border-top-left-radius: 3px;border-top-right-radius: 3px;border-color: grey;text-align:center;"><b>MOST RATED.....RANK '.$i.'</b></div><div style="padding: 15px;"><p>Commiter_name: '.$row1['commit_author'].'</p><p>Commit_message: '.$row1['commit_messg'].'</p><p>Badges received: '.$row1['badge_sum'].'</div></div></div>';
 		// $row1++=$value['c'];
 		// print_r($row1);echo"<br>";
-	$b= json_encode($row1,true);
-}
-$c[$i]=$b;
+	// $b= json_encode($row1,true);
+}// $c[$i]=$b;
 $i++;
 	// echo $res;
 }
 
-print_r($c);
+
+echo $message;
 
 
 
@@ -59,8 +60,8 @@ $mail->AddAddress($row2['user_email']);                  // name is optional
 // $mail->AddReplyTo("info@example.com", "Information");
 $mail->IsHTML(true);   
 
-$mail->Subject = "SUMMARY OF MOST RATED COMMITS";
-$mail->Body    = "$c";
+$mail->Subject = "Badge the commit: Top 5 Rated Commits of the week";
+$mail->Body    = $message;
 $mail->AltBody = "This is the body in plain text for non-HTML mail clients";
 
 if(!$mail->Send())

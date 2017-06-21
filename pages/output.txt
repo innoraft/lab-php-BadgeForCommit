@@ -1,14 +1,1 @@
-Array
-(
-    [0] => Array
-        (
-        )
-
-    [1] => Array
-        (
-        )
-
-    [2] => {"commit_author":"Srijeeta","commit_messg":"Initial Commit","badge_sum":"1"}
-    [3] => {"commit_author":"harpreet16","commit_messg":"color change","badge_sum":"1"}
-)
-Invalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentInvalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentInvalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentMessage has been sentMessage has been sentMessage has been sent
+<div style="margin-left:50px;margin-right:50px;padding-left:10px; padding-right:10px;"><div style="margin-bottom: 20px;background-color: #fff;border: 1px solid transparent; border-radius: 4px; border-color: grey;"><div style=" padding: 10px 15px; border-bottom: 1px solid transparent;background-color:rgba(0,0,0,0.3);color:white;  border-top-left-radius: 3px;border-top-right-radius: 3px;border-color: grey;text-align:center;"><b>MOST RATED.....RANK 1</b></div><div style="padding: 15px;"><p>Commiter_name: Srijeeta</p><p>Commit_message: Initial Commit</p><p>Badges received: 2</div></div></div><div style="margin-left:50px;margin-right:50px;padding-left:10px; padding-right:10px;"><div style="margin-bottom: 20px;background-color: #fff;border: 1px solid transparent; border-radius: 4px; border-color: grey;"><div style=" padding: 10px 15px; border-bottom: 1px solid transparent;background-color:rgba(0,0,0,0.3);color:white;  border-top-left-radius: 3px;border-top-right-radius: 3px;border-color: grey;text-align:center;"><b>MOST RATED.....RANK 2</b></div><div style="padding: 15px;"><p>Commiter_name: harpreet16</p><p>Commit_message: color change</p><p>Badges received: 1</div></div></div>Invalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentInvalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentInvalid address: Invalid address: Message could not be sent. <p>Mailer Error: You must provide at least one recipient email address.Message has been sentMessage has been sentMessage has been sentMessage has been sent
