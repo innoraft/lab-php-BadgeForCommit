@@ -240,7 +240,7 @@ var chart = AmCharts.makeChart( "chartdiv2", {
 <div class="overlay"><br><br>
 <p>Most rated commits</p><div id="chartdiv"></div><br><br>
 <p>Most rated commiters</p><div id="chartdiv1"></div><br><br>
-<p>Most rated repositories<div id="chartdiv2"></div>
+<p>Most rated repositories</p><div id="chartdiv2"></div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </div>					

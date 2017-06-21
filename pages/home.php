@@ -99,6 +99,7 @@ else{
     $(document).ready(function(){
         $("#myModal").modal('show');
         $("button#submit").click(function(){
+        $("#myModal").modal('hide');
 $.ajax({
 type: "POST",
 url: "mail_sub.php",
