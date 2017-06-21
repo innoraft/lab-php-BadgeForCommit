@@ -25,7 +25,7 @@ foreach ($data as $key => $value) {
 	while($row1 =$res->fetch_assoc()){
 		// echo $value['c'];
 		$row1['badge_sum']=$value['c'];
-		$message.='<div style="margin-left:50px;margin-right:50px;padding-left:10px; padding-right:10px;"><div style="margin-bottom: 20px;background-color: #fff;border: 1px solid transparent; border-radius: 4px; border-color: grey;"><div style=" padding: 10px 15px; border-bottom: 1px solid transparent;background-color:rgba(0,0,0,0.3);color:white;  border-top-left-radius: 3px;border-top-right-radius: 3px;border-color: grey;text-align:center;"><b>MOST RATED.....RANK '.$i.'</b></div><div style="padding: 15px;"><p>Commiter_name: '.$row1['commit_author'].'</p><p>Commit_message: '.$row1['commit_messg'].'</p><p>Badges received: '.$row1['badge_sum'].'</div></div></div>';
+		$message.='<div style="margin-left:50px;margin-right:50px;padding-left:10px; padding-right:10px;"><div style="margin-bottom: 20px;background-color: #fff;border: 1px solid transparent; border-radius: 4px; border-color: grey;"><div style=" padding: 10px 15px; border-bottom: 1px solid transparent;background-color:rgba(0,0,0,0.3);color:white;  border-top-left-radius: 3px;border-top-right-radius: 3px;border-color: grey;text-align:center;"><b>MOST RATED.....RANK '.$i.'</b></div><div style="padding: 15px;"><p>Commiter_name: '.$row1['commit_author'].'</p><p>Commit_message: '.$row1['commit_messg'].'</p><p>Badges received: '.$row1['badge_sum'].'</p></div></div></div>';
 		// $row1++=$value['c'];
 		// print_r($row1);echo"<br>";
 	// $b= json_encode($row1,true);
