@@ -22,7 +22,12 @@
   width   : 100%;
   height    : 500px;
   font-size : 11px;
-}     		
+} 
+p{
+  font-size: 20px;
+  text-align: center;
+  color:white;
+}    		
 </style>
 
 
@@ -232,10 +237,10 @@ var chart = AmCharts.makeChart( "chartdiv2", {
 
 
 <!-- HTML -->
-<div class="overlay">
-<div id="chartdiv"></div><br><br>
-<div id="chartdiv1"></div><br><br>
-<div id="chartdiv2"></div>
+<div class="overlay"><br><br>
+<p>Most rated commits</p><div id="chartdiv"></div><br><br>
+<p>Most rated commiters</p><div id="chartdiv1"></div><br><br>
+<p>Most rated repositories<div id="chartdiv2"></div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </div>					
