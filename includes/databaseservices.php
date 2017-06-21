@@ -14,7 +14,7 @@
 		        $email=$data["email"];
 		        $id=2;
 
-		        $query1="SELECT * FROM t_users WHERE user_github_id='".$login."' AND user_email='".$email."'";
+		        $query1="SELECT * FROM t_users WHERE user_github_id='".$login."'";
 
 				$res = $db->query($query1);
 				$num= $res->num_rows;
